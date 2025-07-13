@@ -39,6 +39,9 @@ import {
   Eye,
   Heart,
   ThumbsUp,
+  Calendar,
+  Video,
+  Sparkles,
 } from "lucide-react";
 
 const ChatBizWebsite = () => {
@@ -88,6 +91,24 @@ const ChatBizWebsite = () => {
         staggerChildren: 0.2,
       },
     },
+  };
+
+  const bookDemo = () => {
+    const message =
+      "Hi! I'd like to book a demo according to my business requirements. Please help me understand how ChatBiz automation can work for my business.";
+    const whatsappUrl = `https://wa.me/923329934858?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
+  const getCustomQuote = () => {
+    const message =
+      "Hi! I'm interested in a customized package for my business. Can we discuss pricing based on my specific business needs?";
+    const whatsappUrl = `https://wa.me/923329934858?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappUrl, "_blank");
   };
 
   const packages = [
@@ -163,6 +184,31 @@ const ChatBizWebsite = () => {
       popular: false,
       color: "from-green-500 to-emerald-500",
       icon: Award,
+    },
+    {
+      name: "Custom Package",
+      price: "Custom Pricing",
+      priceUSD: "Quote Based",
+      setup: "Custom Setup",
+      setupUSD: "As Required",
+      description:
+        "Tailored specifically for your unique business requirements",
+      features: [
+        "✨ Fully customized features",
+        "✨ Industry-specific automation",
+        "✨ Unlimited scalability",
+        "✨ Custom integrations",
+        "✨ Dedicated development team",
+        "✨ Priority implementation",
+        "✨ Advanced AI capabilities",
+        "✨ Custom workflow automation",
+        "✨ Personalized training",
+        "✨ 24/7 premium support",
+      ],
+      popular: false,
+      color: "from-yellow-500 to-orange-500",
+      icon: Sparkles,
+      isCustom: true,
     },
   ];
 
@@ -444,6 +490,18 @@ const ChatBizWebsite = () => {
                   )}
                 </button>
               ))}
+
+              {/* Book Demo Button in Navigation */}
+              <motion.button
+                onClick={bookDemo}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center"
+              >
+                <Video className="w-4 h-4 mr-2" />
+                Book Demo
+              </motion.button>
+
               <motion.button
                 onClick={() => scrollToSection("contact")}
                 whileHover={{ scale: 1.05 }}
@@ -493,6 +551,13 @@ const ChatBizWebsite = () => {
                     {item.name}
                   </button>
                 ))}
+                <button
+                  onClick={bookDemo}
+                  className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-xl font-semibold text-center flex items-center justify-center"
+                >
+                  <Video className="w-4 h-4 mr-2" />
+                  Book Demo
+                </button>
                 <button
                   onClick={() => scrollToSection("contact")}
                   className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold text-center"
@@ -562,6 +627,20 @@ const ChatBizWebsite = () => {
               className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
             >
               <motion.button
+                onClick={bookDemo}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px rgba(34, 197, 94, 0.3)",
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all flex items-center justify-center group"
+              >
+                <Calendar className="ml-0 mr-3 w-5 h-5 group-hover:rotate-12 transition-transform" />
+                Book Demo for Your Business
+                <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+
+              <motion.button
                 onClick={() => scrollToSection("contact")}
                 whileHover={{
                   scale: 1.05,
@@ -573,6 +652,7 @@ const ChatBizWebsite = () => {
                 Get Custom Solution
                 <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
+
               <motion.button
                 onClick={() => scrollToSection("pricing")}
                 whileHover={{ scale: 1.05 }}
@@ -582,6 +662,34 @@ const ChatBizWebsite = () => {
                 <Eye className="mr-3 w-5 h-5" />
                 View Pricing
               </motion.button>
+            </motion.div>
+
+            {/* Prominent Demo Booking Section */}
+            <motion.div
+              variants={fadeInUp}
+              className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-3xl p-8 mb-16 max-w-4xl mx-auto border border-green-200"
+            >
+              <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                <div className="text-left">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    See ChatBiz in Action!
+                  </h3>
+                  <p className="text-gray-600">
+                    Book a personalized demo according to your business
+                    requirements. See exactly how automation will work for your
+                    industry.
+                  </p>
+                </div>
+                <motion.button
+                  onClick={bookDemo}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center whitespace-nowrap"
+                >
+                  <Video className="w-5 h-5 mr-2" />
+                  Book Free Demo Now
+                </motion.button>
+              </div>
             </motion.div>
 
             <motion.div
@@ -739,12 +847,13 @@ const ChatBizWebsite = () => {
                   </div>
 
                   <motion.button
-                    onClick={() => scrollToSection("contact")}
+                    onClick={bookDemo}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="mt-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+                    className="mt-8 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center"
                   >
-                    Discuss Your Requirements
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Book Your Demo
                   </motion.button>
                 </div>
               </div>
@@ -912,7 +1021,7 @@ const ChatBizWebsite = () => {
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
             {packages.map((pkg, index) => (
               <motion.div
@@ -920,7 +1029,11 @@ const ChatBizWebsite = () => {
                 variants={fadeInUp}
                 whileHover={{ y: -10, scale: 1.02 }}
                 className={`bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all border-2 relative overflow-hidden ${
-                  pkg.popular ? "border-purple-500" : "border-gray-200"
+                  pkg.popular
+                    ? "border-purple-500"
+                    : pkg.isCustom
+                    ? "border-yellow-500"
+                    : "border-gray-200"
                 }`}
               >
                 {pkg.popular && (
@@ -929,7 +1042,17 @@ const ChatBizWebsite = () => {
                   </div>
                 )}
 
-                <div className={`p-8 ${pkg.popular ? "pt-16" : ""}`}>
+                {pkg.isCustom && (
+                  <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-center py-3 font-semibold">
+                    Fully Customized
+                  </div>
+                )}
+
+                <div
+                  className={`p-8 ${
+                    pkg.popular || pkg.isCustom ? "pt-16" : ""
+                  }`}
+                >
                   <div
                     className={`w-16 h-16 bg-gradient-to-r ${pkg.color} rounded-2xl flex items-center justify-center mb-6`}
                   >
@@ -952,7 +1075,9 @@ const ChatBizWebsite = () => {
                         {pkg.priceUSD}
                       </span>
                     </div>
-                    <div className="text-gray-600 mb-3">per month</div>
+                    <div className="text-gray-600 mb-3">
+                      {pkg.isCustom ? "Based on requirements" : "per month"}
+                    </div>
                     <div className="text-sm text-gray-500 bg-gray-50 rounded-lg p-3">
                       <div className="flex items-center justify-between">
                         <span>Setup Cost:</span>
@@ -980,16 +1105,22 @@ const ChatBizWebsite = () => {
                   </div>
 
                   <motion.button
-                    onClick={() => scrollToSection("contact")}
+                    onClick={
+                      pkg.isCustom
+                        ? getCustomQuote
+                        : () => scrollToSection("contact")
+                    }
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className={`w-full py-4 px-6 rounded-xl font-semibold text-center transition-all ${
                       pkg.popular
                         ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-lg"
+                        : pkg.isCustom
+                        ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:shadow-lg"
                         : "bg-gray-100 text-gray-800 hover:bg-gray-200"
                     }`}
                   >
-                    Contact for Automation Setup
+                    {pkg.isCustom ? "Get Custom Quote" : "Contact for Setup"}
                   </motion.button>
                 </div>
               </motion.div>
@@ -1030,14 +1161,25 @@ const ChatBizWebsite = () => {
                   <div className="text-gray-600">Automated operations</div>
                 </div>
               </div>
-              <motion.button
-                onClick={() => scrollToSection("contact")}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
-              >
-                Discuss Full Automation
-              </motion.button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.button
+                  onClick={bookDemo}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
+                >
+                  <Video className="w-4 h-4 mr-2" />
+                  Book Enterprise Demo
+                </motion.button>
+                <motion.button
+                  onClick={() => scrollToSection("contact")}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+                >
+                  Discuss Full Automation
+                </motion.button>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -1366,6 +1508,19 @@ const ChatBizWebsite = () => {
             className="text-center mt-16"
           >
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <motion.button
+                onClick={bookDemo}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px rgba(34, 197, 94, 0.3)",
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all inline-flex items-center justify-center"
+              >
+                <Video className="mr-3 w-5 h-5" />
+                Book Free Demo
+              </motion.button>
+
               <motion.a
                 href="tel:+923329934858"
                 whileHover={{
@@ -1414,12 +1569,23 @@ const ChatBizWebsite = () => {
                 intelligent bots and process automation that eliminate manual
                 work completely.
               </p>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 mb-6">
                 <Bot className="w-5 h-5 text-green-400" />
                 <span className="text-gray-400 text-sm">
                   100% Automated & Customized Bots
                 </span>
               </div>
+
+              {/* Prominent Demo Booking in Footer */}
+              <motion.button
+                onClick={bookDemo}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center"
+              >
+                <Calendar className="w-4 h-4 mr-2" />
+                Book Your Demo Now
+              </motion.button>
             </div>
 
             <div>
@@ -1459,28 +1625,43 @@ const ChatBizWebsite = () => {
                   Automation Consulting
                 </li>
               </ul>
-            </div>
 
-            <div>
-              <h3 className="font-semibold mb-6 text-lg">Contact Info</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li className="flex items-center">
-                  <Phone className="w-4 h-4 mr-3" />
-                  +92 332 993 4858
-                </li>
-                <li className="flex items-center">
-                  <Mail className="w-4 h-4 mr-3" />
-                  realahmedali4@gmail.com
-                </li>
-                <li className="flex items-center">
-                  <Globe className="w-4 h-4 mr-3" />
-                  Rawalpindi, Pakistan
-                </li>
-                <li className="flex items-center">
-                  <MessageSquare className="w-4 h-4 mr-3" />
-                  Automation Support 24/7
-                </li>
-              </ul>
+              <div className="mt-6">
+                <h4 className="font-semibold mb-4 text-lg">Contact Info</h4>
+                <ul className="space-y-3 text-gray-400">
+                  <li className="flex items-center">
+                    <Phone className="w-4 h-4 mr-3" />
+                    <a
+                      href="tel:+923329934858"
+                      className="hover:text-white transition-colors"
+                    >
+                      +92 332 993 4858
+                    </a>
+                  </li>
+                  <li className="flex items-center">
+                    <Mail className="w-4 h-4 mr-3" />
+                    <a
+                      href="mailto:realahmedali4@gmail.com"
+                      className="hover:text-white transition-colors"
+                    >
+                      realahmedali4@gmail.com
+                    </a>
+                  </li>
+                  <li className="flex items-center">
+                    <Globe className="w-4 h-4 mr-3" />
+                    Rawalpindi, Pakistan
+                  </li>
+                  <li className="flex items-center">
+                    <MessageSquare className="w-4 h-4 mr-3" />
+                    <a
+                      href="https://wa.me/923329934858?text=I want automation support"
+                      className="hover:text-white transition-colors"
+                    >
+                      Automation Support 24/7
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
