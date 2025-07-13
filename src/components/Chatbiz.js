@@ -93,10 +93,10 @@ const ChatBizWebsite = () => {
   const packages = [
     {
       name: "Starter",
-      price: "PKR 5,500",
-      priceUSD: "$18",
-      setup: "PKR 25,000",
-      setupUSD: "$81",
+      price: "PKR 6,050",
+      priceUSD: "$20",
+      setup: "PKR 27,500",
+      setupUSD: "$89",
       description: "Perfect for small restaurants & home-based businesses",
       features: [
         "Up to 50 products in catalog",
@@ -116,15 +116,15 @@ const ChatBizWebsite = () => {
     },
     {
       name: "Professional",
-      price: "PKR 12,000",
-      priceUSD: "$39",
-      setup: "PKR 50,000",
-      setupUSD: "$162",
+      price: "PKR 13,200",
+      priceUSD: "$43",
+      setup: "PKR 55,000",
+      setupUSD: "$178",
       description: "Ideal for growing businesses & retail shops",
       features: [
         "Up to 200 products in catalog",
         "500 orders per month",
-        "Advanced AI chatbot",
+        "Advanced WhatsApp chatbot",
         "Complete admin dashboard",
         "Payment gateway integration",
         "Inventory management",
@@ -141,10 +141,10 @@ const ChatBizWebsite = () => {
     },
     {
       name: "Enterprise",
-      price: "PKR 22,000",
-      priceUSD: "$71",
-      setup: "PKR 85,000",
-      setupUSD: "$276",
+      price: "PKR 24,200",
+      priceUSD: "$78",
+      setup: "PKR 93,500",
+      setupUSD: "$304",
       description: "For restaurant chains & large retailers",
       features: [
         "Unlimited products catalog",
@@ -243,51 +243,51 @@ const ChatBizWebsite = () => {
 
   const services = [
     {
-      icon: Settings,
-      title: "Custom Business Setup",
+      icon: Bot,
+      title: "Customized Chatbot Development",
       description:
-        "We analyze your business needs and create a completely customized solution tailored to your specific requirements.",
+        "Custom intelligent chatbots that completely replace human staff for WhatsApp customer service and order management.",
       process: [
-        "Business analysis",
-        "Custom configuration",
-        "Feature customization",
-        "Testing & deployment",
+        "Bot intelligence design",
+        "Conversation flow automation",
+        "Integration & testing",
+        "24/7 automated deployment",
       ],
     },
     {
-      icon: Code,
-      title: "Integration Services",
+      icon: Workflow,
+      title: "Business Process Automation",
       description:
-        "Seamlessly integrate with your existing systems including POS, inventory management, and accounting software.",
+        "Complete automation of your business workflows - from customer acquisition to order fulfillment without manual intervention.",
       process: [
-        "System assessment",
-        "API development",
-        "Data migration",
-        "Integration testing",
+        "Process analysis & mapping",
+        "Automation design",
+        "System integration",
+        "Automated optimization",
+      ],
+    },
+    {
+      icon: Settings,
+      title: "Custom Automation Solutions",
+      description:
+        "Tailored automation systems designed specifically for your business needs and industry requirements.",
+      process: [
+        "Requirements analysis",
+        "Custom automation development",
+        "Integration & testing",
+        "Performance optimization",
       ],
     },
     {
       icon: HeadphonesIcon,
-      title: "Training & Support",
+      title: "Automation Support & Maintenance",
       description:
-        "Comprehensive training for your team and ongoing support to ensure smooth operations and maximum efficiency.",
+        "Ongoing support to ensure your automated systems run smoothly and continuously optimize performance.",
       process: [
-        "Staff training",
-        "Documentation",
-        "Ongoing support",
-        "Performance optimization",
-      ],
-    },
-    {
-      icon: TrendingUp,
-      title: "Business Growth Consulting",
-      description:
-        "Strategic consulting to help you leverage WhatsApp commerce for business growth and customer acquisition.",
-      process: [
-        "Growth strategy",
-        "Market analysis",
-        "Performance optimization",
-        "Scaling guidance",
+        "Performance monitoring",
+        "System optimization",
+        "Issue resolution",
+        "Feature updates",
       ],
     },
   ];
@@ -295,51 +295,51 @@ const ChatBizWebsite = () => {
   const portfolioItems = [
     {
       title: "Hassan's Restaurant Chain",
-      category: "Food & Beverage",
+      category: "Food & Beverage Automation",
       description:
-        "Complete WhatsApp ordering system for 5 restaurant locations with integrated inventory management.",
+        "Complete automation system handling 500+ daily orders across 5 locations with zero manual WhatsApp management.",
       metrics: [
-        "300+ daily orders",
-        "40% increase in sales",
-        "60% reduction in order errors",
+        "100% automated order processing",
+        "Zero manual replies needed",
+        "500+ orders handled daily by bots",
       ],
-      image: "🍽️",
+      image: "🤖",
     },
     {
       title: "Fashion Hub Boutique",
-      category: "Retail & Fashion",
+      category: "Retail Process Automation",
       description:
-        "Custom chatbot for fashion boutique with size selection, color options, and style recommendations.",
+        "Customized chatbot completely replaced human staff for customer service, order taking, and inventory management.",
       metrics: [
-        "250+ products catalog",
-        "35% higher conversion",
-        "24/7 automated sales",
+        "90% reduction in staff costs",
+        "24/7 automated customer service",
+        "Zero manual order processing",
       ],
-      image: "👗",
+      image: "⚡",
     },
     {
       title: "TechMart Electronics",
-      category: "Electronics & Gadgets",
+      category: "Business Process Automation",
       description:
-        "Advanced e-commerce solution with product specifications, warranty tracking, and technical support.",
+        "Fully automated e-commerce operations from product inquiry to delivery confirmation without human intervention.",
       metrics: [
-        "500+ product varieties",
-        "50% faster order processing",
-        "90% customer satisfaction",
+        "100% automated operations",
+        "Zero manual work required",
+        "24/7 intelligent customer support",
       ],
-      image: "📱",
+      image: "🔧",
     },
     {
       title: "Sweet Corner Bakery",
-      category: "Food & Desserts",
+      category: "Custom Order Automation",
       description:
-        "Specialized ordering system for custom cakes, party orders, and delivery scheduling.",
+        "Advanced automation system handling complex custom orders, special requests, and delivery scheduling automatically.",
       metrics: [
-        "200+ custom orders/month",
-        "45% repeat customers",
-        "Zero delivery errors",
+        "Complex order automation",
+        "Zero manual coordination",
+        "100% automated scheduling",
       ],
-      image: "🎂",
+      image: "🎯",
     },
   ];
 
@@ -348,37 +348,37 @@ const ChatBizWebsite = () => {
       name: "Ahmed Hassan",
       business: "Hassan's Restaurant Chain",
       role: "Owner",
-      text: "ChatBiz completely transformed our business operations. The custom solution they built handles our complex menu, multiple locations, and delivery tracking perfectly.",
+      text: "We completely eliminated the need for WhatsApp staff! The customized bot handles all 500+ daily orders automatically. Our operational costs dropped by 80% and we never miss an order.",
       rating: 5,
       avatar: "AH",
-      metrics: "300+ daily orders",
+      metrics: "Zero manual work needed",
     },
     {
       name: "Fatima Khan",
       business: "Fashion Hub Boutique",
       role: "Founder",
-      text: "The chatbot understands our customers' style preferences and suggests perfect matches. Our sales have increased by 40% since implementation.",
+      text: "No more hiring staff for WhatsApp management! The intelligent customized bot understands customer queries perfectly and handles everything automatically. We save PKR 50,000 monthly on staff costs.",
       rating: 5,
       avatar: "FK",
-      metrics: "40% sales increase",
+      metrics: "100% automated operations",
     },
     {
       name: "Ali Raza",
       business: "TechMart Electronics",
       role: "Managing Director",
-      text: "Professional service, exceptional support, and a solution that perfectly fits our technical requirements. Highly recommended!",
+      text: "The automation is incredible! Our customized bot handles complex technical queries, processes orders, and manages inventory automatically. We operate 24/7 without any manual intervention.",
       rating: 5,
       avatar: "AR",
-      metrics: "500+ products managed",
+      metrics: "24/7 automated service",
     },
     {
       name: "Sara Ahmed",
       business: "Sweet Corner Bakery",
       role: "Co-owner",
-      text: "Custom cake orders are now effortless! Customers can specify every detail through WhatsApp, and our system tracks everything perfectly.",
+      text: "Even complex custom cake orders are handled automatically! The customized bot collects all specifications, schedules delivery, and processes payments without any manual work from our side.",
       rating: 5,
       avatar: "SA",
-      metrics: "200+ custom orders",
+      metrics: "Complex automation success",
     },
   ];
 
@@ -413,7 +413,7 @@ const ChatBizWebsite = () => {
                 <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   ChatBiz
                 </span>
-                <div className="text-xs text-gray-500">WhatsApp Commerce</div>
+                <div className="text-xs text-gray-500">Business Automation</div>
               </div>
             </motion.div>
 
@@ -533,7 +533,7 @@ const ChatBizWebsite = () => {
             >
               <Zap className="w-5 h-5 text-yellow-500 mr-2" />
               <span className="text-gray-700 font-medium">
-                Pakistan's Leading WhatsApp Commerce Platform
+                Pakistan's Leading Business Automation Platform
               </span>
             </motion.div>
 
@@ -543,7 +543,7 @@ const ChatBizWebsite = () => {
             >
               Transform Your Business with
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent block mt-2">
-                WhatsApp Commerce
+                WhatsApp Commerce Automation
               </span>
             </motion.h1>
 
@@ -552,8 +552,9 @@ const ChatBizWebsite = () => {
               className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed"
             >
               Complete e-commerce solution that runs entirely on WhatsApp. Fully
-              customized for your business needs. Let customers browse, order,
-              and pay without leaving their favorite chat app.
+              customized for your business needs with business process
+              automation. Let customers browse, order, and pay without leaving
+              their favorite chat app.
             </motion.p>
 
             <motion.div
@@ -633,7 +634,8 @@ const ChatBizWebsite = () => {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We understand that every business is unique. That's why we don't
-              offer one-size-fits-all solutions.
+              offer one-size-fits-all solutions with business automation
+              capabilities.
             </p>
           </motion.div>
 
@@ -652,7 +654,8 @@ const ChatBizWebsite = () => {
                 <p className="text-gray-600 leading-relaxed">
                   We analyze your specific business requirements and build a
                   solution that perfectly fits your workflow, customer behavior,
-                  and growth objectives. No generic templates here.
+                  and growth objectives with automation features. No generic
+                  templates here.
                 </p>
               </div>
 
@@ -724,7 +727,7 @@ const ChatBizWebsite = () => {
                     <div className="flex items-center">
                       <CheckCircle className="w-6 h-6 text-green-500 mr-3" />
                       <span className="text-gray-700">
-                        Ongoing feature development
+                        Business process automation
                       </span>
                     </div>
                     <div className="flex items-center">
@@ -767,7 +770,8 @@ const ChatBizWebsite = () => {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Comprehensive tools and features that can be customized and
-              configured to match your exact business requirements.
+              configured to match your exact business requirements with
+              automation capabilities.
             </p>
           </motion.div>
 
@@ -822,11 +826,11 @@ const ChatBizWebsite = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Our Services
+              Our Automation Services
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              End-to-end services to ensure your WhatsApp commerce solution is
-              perfectly tailored and optimally performing.
+              Complete automation solutions that eliminate manual work and
+              reduce your need for human staff by up to 90%.
             </p>
           </motion.div>
 
@@ -895,12 +899,11 @@ const ChatBizWebsite = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Transparent Pricing
+              Automation Pricing Plans
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose a foundation plan and we'll customize it to your specific
-              business needs. All plans include setup, training, and ongoing
-              support.
+              Choose your automation level. All plans eliminate manual work and
+              include intelligent bots that handle everything automatically.
             </p>
           </motion.div>
 
@@ -986,7 +989,7 @@ const ChatBizWebsite = () => {
                         : "bg-gray-100 text-gray-800 hover:bg-gray-200"
                     }`}
                   >
-                    Contact for Customization
+                    Contact for Automation Setup
                   </motion.button>
                 </div>
               </motion.div>
@@ -1001,32 +1004,30 @@ const ChatBizWebsite = () => {
           >
             <div className="bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Custom Enterprise Solutions
+                Custom Enterprise Automation
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Need something beyond our standard packages? We create
-                completely custom solutions for large businesses, restaurant
-                chains, and unique industry requirements. Every feature can be
-                tailored to your specifications.
+                Need complete business transformation? We build enterprise-grade
+                automation systems that can handle thousands of orders daily
+                with zero manual intervention. Perfect for large operations and
+                franchises.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">
-                    Custom Pricing
+                    100% Automated
                   </div>
-                  <div className="text-gray-600">Based on requirements</div>
+                  <div className="text-gray-600">Zero manual work</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-purple-600">
                     Unlimited
                   </div>
-                  <div className="text-gray-600">Features & customization</div>
+                  <div className="text-gray-600">Order processing capacity</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">
-                    Dedicated
-                  </div>
-                  <div className="text-gray-600">Development team</div>
+                  <div className="text-2xl font-bold text-green-600">24/7</div>
+                  <div className="text-gray-600">Automated operations</div>
                 </div>
               </div>
               <motion.button
@@ -1035,7 +1036,7 @@ const ChatBizWebsite = () => {
                 whileTap={{ scale: 0.95 }}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
               >
-                Discuss Custom Requirements
+                Discuss Full Automation
               </motion.button>
             </div>
           </motion.div>
@@ -1052,11 +1053,11 @@ const ChatBizWebsite = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Success Stories
+              Automation Success Stories
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See how we've helped businesses across different industries
-              implement custom WhatsApp commerce solutions.
+              See how our intelligent automation has completely eliminated
+              manual work for businesses across Pakistan.
             </p>
           </motion.div>
 
@@ -1118,11 +1119,11 @@ const ChatBizWebsite = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              What Our Clients Say
+              What Business Owners Say About Our Automation
             </h2>
             <p className="text-xl text-gray-600">
-              Real feedback from business owners who transformed their
-              operations with ChatBiz
+              Real feedback from business owners who eliminated manual work
+              completely with our intelligent automation
             </p>
           </motion.div>
 
@@ -1207,11 +1208,12 @@ const ChatBizWebsite = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Ready to Get Started?
+              Ready for Complete Automation?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Let's discuss your business requirements and create a custom
-              WhatsApp commerce solution that perfectly fits your needs.
+              Stop manual work forever. Let our intelligent bots and automation
+              systems handle your entire business process while you focus on
+              growth.
             </p>
           </motion.div>
 
@@ -1224,7 +1226,7 @@ const ChatBizWebsite = () => {
             >
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
                 <h3 className="text-2xl font-bold text-white mb-6">
-                  Get in Touch
+                  Get Complete Automation
                 </h3>
 
                 <div className="space-y-6">
@@ -1232,9 +1234,11 @@ const ChatBizWebsite = () => {
                     whileHover={{ scale: 1.05 }}
                     className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl"
                   >
-                    <Phone className="w-8 h-8 text-white" />
+                    <Bot className="w-8 h-8 text-white" />
                     <div>
-                      <div className="text-white font-semibold">Call Us</div>
+                      <div className="text-white font-semibold">
+                        Call for Bot Demo
+                      </div>
                       <a
                         href="tel:+923329934858"
                         className="text-blue-200 hover:text-white transition-colors"
@@ -1248,9 +1252,11 @@ const ChatBizWebsite = () => {
                     whileHover={{ scale: 1.05 }}
                     className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl"
                   >
-                    <Mail className="w-8 h-8 text-white" />
+                    <Workflow className="w-8 h-8 text-white" />
                     <div>
-                      <div className="text-white font-semibold">Email Us</div>
+                      <div className="text-white font-semibold">
+                        Email for Automation
+                      </div>
                       <a
                         href="mailto:realahmedali4@gmail.com"
                         className="text-blue-200 hover:text-white transition-colors"
@@ -1270,10 +1276,10 @@ const ChatBizWebsite = () => {
                         WhatsApp Us
                       </div>
                       <a
-                        href="https://wa.me/923329934858?text=I want to discuss ChatBiz for my business"
+                        href="https://wa.me/923329934858?text=I want complete business automation"
                         className="text-blue-200 hover:text-white transition-colors"
                       >
-                        Start Conversation
+                        Start Automation
                       </a>
                     </div>
                   </motion.div>
@@ -1288,7 +1294,7 @@ const ChatBizWebsite = () => {
               className="bg-white/10 backdrop-blur-sm rounded-2xl p-8"
             >
               <h3 className="text-2xl font-bold text-white mb-6">
-                What Happens Next?
+                How We Automate Your Business
               </h3>
 
               <div className="space-y-6">
@@ -1298,11 +1304,11 @@ const ChatBizWebsite = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-semibold mb-2">
-                      Business Analysis
+                      Process Analysis
                     </h4>
                     <p className="text-blue-100">
-                      We analyze your business requirements, workflow, and
-                      customer behavior.
+                      We analyze your current manual processes and identify
+                      automation opportunities.
                     </p>
                   </div>
                 </div>
@@ -1313,11 +1319,11 @@ const ChatBizWebsite = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-semibold mb-2">
-                      Custom Proposal
+                      Customized Bot Development
                     </h4>
                     <p className="text-blue-100">
-                      We create a detailed proposal with custom features and
-                      transparent pricing.
+                      We build intelligent customized bots that completely
+                      replace human staff for WhatsApp management.
                     </p>
                   </div>
                 </div>
@@ -1328,10 +1334,11 @@ const ChatBizWebsite = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-semibold mb-2">
-                      Development & Setup
+                      Automation Setup
                     </h4>
                     <p className="text-blue-100">
-                      Our team builds and configures your custom solution.
+                      Complete automation deployment with testing to ensure 100%
+                      reliability.
                     </p>
                   </div>
                 </div>
@@ -1341,12 +1348,10 @@ const ChatBizWebsite = () => {
                     4
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold mb-2">
-                      Training & Launch
-                    </h4>
+                    <h4 className="text-white font-semibold mb-2">Go Live</h4>
                     <p className="text-blue-100">
-                      Complete training for your team and smooth launch with
-                      ongoing support.
+                      Your business runs automatically 24/7 without any manual
+                      intervention needed.
                     </p>
                   </div>
                 </div>
@@ -1370,18 +1375,18 @@ const ChatBizWebsite = () => {
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-purple-600 px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all inline-flex items-center justify-center"
               >
-                <Phone className="mr-3 w-5 h-5" />
-                Call for Consultation
+                <Bot className="mr-3 w-5 h-5" />
+                Call for Automation
               </motion.a>
 
               <motion.a
-                href="https://wa.me/923329934858?text=I want to discuss ChatBiz for my business"
+                href="https://wa.me/923329934858?text=I want complete business automation"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="border-2 border-white text-white px-10 py-4 rounded-xl text-lg font-semibold hover:bg-white hover:text-purple-600 transition-all inline-flex items-center justify-center"
               >
-                <MessageSquare className="mr-3 w-5 h-5" />
-                WhatsApp Discussion
+                <Workflow className="mr-3 w-5 h-5" />
+                WhatsApp Automation
               </motion.a>
             </div>
           </motion.div>
@@ -1400,40 +1405,58 @@ const ChatBizWebsite = () => {
                 <div>
                   <span className="text-2xl font-bold">ChatBiz</span>
                   <div className="text-sm text-gray-400">
-                    WhatsApp Commerce Solutions
+                    Business Automation Solutions
                   </div>
                 </div>
               </div>
               <p className="text-gray-400 mb-6 leading-relaxed max-w-md">
-                Pakistan's leading WhatsApp commerce platform, providing custom
-                solutions for businesses of all sizes. Transform your business
-                with our tailored approach.
+                Pakistan's leading business automation platform, providing
+                intelligent bots and process automation that eliminate manual
+                work completely.
               </p>
               <div className="flex items-center space-x-4">
-                <Shield className="w-5 h-5 text-green-400" />
+                <Bot className="w-5 h-5 text-green-400" />
                 <span className="text-gray-400 text-sm">
-                  Secure & Reliable Platform
+                  100% Automated & Customized Bots
                 </span>
               </div>
             </div>
 
             <div>
-              <h3 className="font-semibold mb-6 text-lg">Our Services</h3>
+              <h3 className="font-semibold mb-6 text-lg">Our Solutions</h3>
               <ul className="space-y-3 text-gray-400">
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  Custom WhatsApp Bots
+                  Intelligent Customized Chatbots
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  E-commerce Integration
+                  Business Process Automation
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  Business Analytics
+                  24/7 Automated Operations
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  Payment Solutions
+                  Staff Replacement Automation
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  Training & Support
+                  Custom Automation Development
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-6 text-lg">Support</h3>
+              <ul className="space-y-3 text-gray-400">
+                <li className="hover:text-white transition-colors cursor-pointer">
+                  24/7 Automation Support
+                </li>
+                <li className="hover:text-white transition-colors cursor-pointer">
+                  Bot Training & Setup
+                </li>
+                <li className="hover:text-white transition-colors cursor-pointer">
+                  Process Optimization
+                </li>
+                <li className="hover:text-white transition-colors cursor-pointer">
+                  Automation Consulting
                 </li>
               </ul>
             </div>
@@ -1455,7 +1478,7 @@ const ChatBizWebsite = () => {
                 </li>
                 <li className="flex items-center">
                   <MessageSquare className="w-4 h-4 mr-3" />
-                  WhatsApp Support
+                  Automation Support 24/7
                 </li>
               </ul>
             </div>
@@ -1465,7 +1488,7 @@ const ChatBizWebsite = () => {
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-gray-400 mb-4 md:mb-0">
                 © 2025 ChatBiz. All rights reserved. Built with ❤️ for Pakistani
-                businesses.
+                businesses seeking complete automation.
               </p>
               <div className="flex space-x-6 text-gray-400">
                 <span className="hover:text-white transition-colors cursor-pointer">
