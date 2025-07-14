@@ -1,3 +1,8 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+Sitemap: https://www.chatbiz.site/sitemap.xml
+
+# Block access to sensitive files
+Disallow: /admin/
+Disallow: /.env

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   MessageCircle,
@@ -436,6 +437,36 @@ const ChatBizWebsite = () => {
     setIsMenuOpen(false);
   };
 
+  // Add this inside your ChatBizWebsite component, before the return statement:
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "ChatBiz WhatsApp Automation",
+    description:
+      "Complete WhatsApp e-commerce automation platform for Pakistani businesses",
+    url: "https://www.chatbiz.site",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web Browser",
+    offers: {
+      "@type": "Offer",
+      price: "6050",
+      priceCurrency: "PKR",
+      priceValidUntil: "2025-12-31",
+    },
+  };
+
+  // Add this JSX right after your opening <div> tag:
+  <Helmet>
+    <title>
+      ChatBiz - WhatsApp Business Automation Pakistan | Custom E-commerce Bots
+    </title>
+    <meta
+      name="description"
+      content="Pakistan's #1 WhatsApp business automation platform. Custom chatbots for e-commerce, order management, and customer service. 100% automated solutions for Pakistani businesses."
+    />
+    <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+  </Helmet>;
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Navigation */}
@@ -573,6 +604,8 @@ const ChatBizWebsite = () => {
       {/* Hero Section */}
       <section
         id="home"
+        itemScope
+        itemType="https://schema.org/Organization"
         className="pt-24 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
@@ -729,7 +762,12 @@ const ChatBizWebsite = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white">
+      <section
+        id="about"
+        itemScope
+        itemType="https://schema.org/Organization"
+        className="py-20 bg-white"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -865,6 +903,8 @@ const ChatBizWebsite = () => {
       {/* Features Section */}
       <section
         id="features"
+        itemScope
+        itemType="https://schema.org/Organization"
         className="py-20 bg-gradient-to-br from-gray-50 to-blue-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -926,7 +966,12 @@ const ChatBizWebsite = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-white">
+      <section
+        id="services"
+        itemScope
+        itemType="https://schema.org/Organization"
+        className="py-20 bg-white"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -998,6 +1043,8 @@ const ChatBizWebsite = () => {
       {/* Pricing Section */}
       <section
         id="pricing"
+        itemScope
+        itemType="https://schema.org/Organization"
         className="py-20 bg-gradient-to-br from-blue-50 to-purple-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1186,7 +1233,12 @@ const ChatBizWebsite = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 bg-white">
+      <section
+        id="portfolio"
+        itemScope
+        itemType="https://schema.org/Organization"
+        className="py-20 bg-white"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -1251,6 +1303,8 @@ const ChatBizWebsite = () => {
       {/* Testimonials Section */}
       <section
         id="testimonials"
+        itemScope
+        itemType="https://schema.org/Organization"
         className="py-20 bg-gradient-to-br from-gray-50 to-blue-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1330,6 +1384,8 @@ const ChatBizWebsite = () => {
       {/* Contact Section */}
       <section
         id="contact"
+        itemScope
+        itemType="https://schema.org/Organization"
         className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-black/20"></div>
