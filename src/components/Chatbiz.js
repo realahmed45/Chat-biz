@@ -464,6 +464,10 @@ const ChatBizWebsite = () => {
       name="description"
       content="Pakistan's #1 WhatsApp business automation platform. Custom chatbots for e-commerce, order management, and customer service. 100% automated solutions for Pakistani businesses."
     />
+    <meta
+      name="google-site-verification"
+      content="google-site-verification=google-site-verification=fWYgt9NzLbRwU531pCPVx53grQgNWFrdlQ2NjCsYtOc"
+    />
     <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
   </Helmet>;
 
