@@ -6,6 +6,7 @@ import {
   ShoppingCart,
   BarChart3,
   Users,
+  Calculator,
   Zap,
   Check,
   Star,
@@ -43,6 +44,19 @@ import {
   Calendar,
   Video,
   Sparkles,
+  Pizza,
+  ExternalLink,
+  Monitor,
+  Briefcase,
+  DollarSign,
+  Store,
+  Utensils,
+  Coffee,
+  ShirtIcon,
+  Laptop,
+  Building,
+  Factory,
+  Truck,
 } from "lucide-react";
 
 const ChatBizWebsite = () => {
@@ -56,10 +70,11 @@ const ChatBizWebsite = () => {
       const sections = [
         "home",
         "about",
+        "products",
+        "pizza-demo",
         "features",
-        "services",
         "pricing",
-        "portfolio",
+        "industries",
         "testimonials",
         "contact",
       ];
@@ -96,16 +111,28 @@ const ChatBizWebsite = () => {
 
   const bookDemo = () => {
     const message =
-      "Hi! I'd like to book a demo according to my business requirements. Please help me understand how ChatBiz automation can work for my business.";
+      "Hi! I want to see how ChatBiz automation can eliminate manual work in my business. Please show me a live demo of your automation systems.";
     const whatsappUrl = `https://wa.me/923329934858?text=${encodeURIComponent(
       message
     )}`;
     window.open(whatsappUrl, "_blank");
   };
 
+  const tryPizzaDemo = () => {
+    const message = "menu";
+    const whatsappUrl = `https://wa.me/923329945014?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
+  const viewDashboard = () => {
+    window.open("https://pizza-shop-dashboard.vercel.app/", "_blank");
+  };
+
   const getCustomQuote = () => {
     const message =
-      "Hi! I'm interested in a customized package for my business. Can we discuss pricing based on my specific business needs?";
+      "Hi! I want a custom automation solution for my business. Can we discuss pricing and implementation based on my specific business needs?";
     const whatsappUrl = `https://wa.me/923329934858?text=${encodeURIComponent(
       message
     )}`;
@@ -114,318 +141,282 @@ const ChatBizWebsite = () => {
 
   const packages = [
     {
-      name: "Starter",
-      price: "PKR 6,050",
-      priceUSD: "$20",
-      setup: "PKR 27,500",
-      setupUSD: "$89",
-      description: "Perfect for small restaurants & home-based businesses",
+      name: "Starter Automation",
+
+      monthlyPrice: "$97",
+      setup: "$697",
+      description:
+        "Perfect for small businesses ready to eliminate manual WhatsApp work",
       features: [
-        "Up to 50 products in catalog",
-        "150 orders per month",
-        "Basic WhatsApp chatbot",
-        "Simple admin dashboard",
-        "Order tracking system",
-        "Customer management",
-        "Email support (48hr response)",
+        "Complete WhatsApp automation system",
+        "Up to 50 products in automated catalog",
+        "300 automated orders per month",
+        "Intelligent chatbot with natural language",
+        "Professional admin dashboard",
+        "Order tracking & management",
+        "Customer database automation",
+        "Payment processing automation",
+        "Email support with 48hr response",
         "Cash on Delivery support",
-        "Basic analytics",
-        "Monthly data backup",
+        "Basic analytics & reporting",
+        "Monthly data backup & security",
       ],
       popular: false,
       color: "from-blue-500 to-cyan-500",
       icon: Smartphone,
+      savings: "Replaces 1-2 staff members",
     },
     {
-      name: "Professional",
-      price: "PKR 13,200",
-      priceUSD: "$43",
-      setup: "PKR 55,000",
-      setupUSD: "$178",
-      description: "Ideal for growing businesses & retail shops",
+      name: "Professional Automation",
+
+      monthlyPrice: "$197",
+      setup: "$1,297",
+      description:
+        "Complete automation for growing businesses - zero manual work needed",
       features: [
-        "Up to 200 products in catalog",
-        "500 orders per month",
-        "Advanced WhatsApp chatbot",
-        "Complete admin dashboard",
-        "Payment gateway integration",
-        "Inventory management",
-        "Customer segmentation",
-        "Broadcast messaging (250 contacts)",
-        "Advanced analytics & reports",
-        "Priority support (24hr response)",
-        "Discount codes & referrals",
-        "Weekly data backup",
+        "Advanced WhatsApp automation platform",
+        "Up to 200 products with smart categorization",
+        "Unlimited automated orders",
+        "AI-powered conversation management",
+        "Advanced admin dashboard with analytics",
+        "Multi-payment gateway integration",
+        "Automated inventory management",
+        "Customer segmentation & targeting",
+        "Broadcast automation (500 contacts)",
+        "Advanced reporting & insights",
+        "Priority support with 24hr response",
+        "Automated discount & promotion systems",
+        "Weekly performance optimization",
+        "Staff training & onboarding included",
       ],
       popular: true,
       color: "from-purple-500 to-pink-500",
       icon: Rocket,
+      savings: "Replaces 2-4 staff members",
     },
     {
-      name: "Enterprise",
-      price: "PKR 24,200",
-      priceUSD: "$78",
-      setup: "PKR 93,500",
-      setupUSD: "$304",
-      description: "For restaurant chains & large retailers",
+      name: "Enterprise Automation",
+
+      monthlyPrice: "$397",
+      setup: "$2,997",
+      description:
+        "Complete business transformation - 100% automated operations",
       features: [
-        "Unlimited products catalog",
-        "Unlimited orders",
-        "AI-powered chatbot with NLP",
-        "Multi-location management",
-        "Custom integrations & API",
-        "Advanced inventory & supplier management",
-        "Unlimited broadcast messaging",
-        "Real-time analytics dashboard",
-        "24/7 dedicated support",
-        "Staff role management",
-        "Custom feature development",
-        "Daily data backup & security",
+        "Enterprise-grade automation platform",
+        "Unlimited products & categories",
+        "Unlimited automated orders & customers",
+        "AI with advanced natural language processing",
+        "Multi-location management automation",
+        "Custom integrations & API access",
+        "Advanced supplier & inventory automation",
+        "Unlimited broadcast automation",
+        "Real-time business intelligence",
+        "24/7 dedicated automation support",
+        "Staff role & permission management",
+        "Custom feature development included",
+        "Daily monitoring & optimization",
+        "Enterprise security & compliance",
+        "Dedicated success manager",
       ],
       popular: false,
       color: "from-green-500 to-emerald-500",
       icon: Award,
+      savings: "Replaces 5-10 staff members",
     },
     {
-      name: "Custom Package",
-      price: "Custom Pricing",
-      priceUSD: "Quote Based",
-      setup: "Custom Setup",
-      setupUSD: "As Required",
+      name: "Custom Automation",
+      price: "Custom Quote",
+      monthlyPrice: "Based on Scale",
+      setup: "Tailored Setup",
       description:
-        "Tailored specifically for your unique business requirements",
+        "Fully customized automation built specifically for your unique business model",
       features: [
-        "✨ Fully customized features",
-        "✨ Industry-specific automation",
-        "✨ Unlimited scalability",
-        "✨ Custom integrations",
+        "✨ Completely custom automation design",
+        "✨ Industry-specific workflow automation",
+        "✨ Unlimited scalability & features",
+        "✨ Custom integrations with existing systems",
         "✨ Dedicated development team",
-        "✨ Priority implementation",
-        "✨ Advanced AI capabilities",
-        "✨ Custom workflow automation",
-        "✨ Personalized training",
-        "✨ 24/7 premium support",
+        "✨ Priority implementation timeline",
+        "✨ Advanced AI & machine learning",
+        "✨ Custom workflow & process automation",
+        "✨ Comprehensive team training program",
+        "✨ 24/7 premium support & monitoring",
+        "✨ Regular optimization & updates",
+        "✨ Enterprise-grade security",
       ],
       popular: false,
       color: "from-yellow-500 to-orange-500",
       icon: Sparkles,
       isCustom: true,
+      savings: "Eliminates entire manual workforce",
+    },
+  ];
+
+  const industries = [
+    {
+      icon: Utensils,
+      title: "Restaurants & Food",
+      description:
+        "Complete automation for food orders, menu management, and delivery coordination",
+      examples: [
+        "Pizza shops",
+        "Restaurants",
+        "Cloud kitchens",
+        "Catering services",
+      ],
+    },
+    {
+      icon: Store,
+      title: "Retail & E-commerce",
+      description:
+        "Automated product browsing, inventory management, and order processing",
+      examples: [
+        "Clothing stores",
+        "Electronics",
+        "Home goods",
+        "Beauty products",
+      ],
+    },
+    {
+      icon: Coffee,
+      title: "Services & Bookings",
+      description:
+        "Automated appointment scheduling, service bookings, and customer management",
+      examples: [
+        "Salons & spas",
+        "Consultants",
+        "Repair services",
+        "Healthcare",
+      ],
+    },
+    {
+      icon: Building,
+      title: "B2B & Wholesale",
+      description:
+        "Automated bulk ordering, price quotes, and supplier management",
+      examples: ["Distributors", "Manufacturers", "Suppliers", "Wholesalers"],
     },
   ];
 
   const features = [
     {
       icon: Bot,
-      title: "Intelligent WhatsApp Chatbot",
+      title: "Intelligent WhatsApp Automation",
       description:
-        "AI-powered conversational bot that understands customer queries, handles product browsing, takes orders, and processes payments seamlessly.",
+        "AI-powered system that completely replaces human staff for WhatsApp customer service and sales.",
       details: [
-        "Natural language processing",
+        "Natural language understanding",
         "24/7 automated responses",
-        "Order confirmation & tracking",
-        "Payment processing",
+        "Smart conversation management",
+        "Zero manual intervention needed",
       ],
     },
     {
       icon: ShoppingCart,
-      title: "Complete E-commerce Suite",
+      title: "Complete Sales Automation",
       description:
-        "Full-featured online store that runs entirely on WhatsApp with product catalogs, inventory management, and order processing.",
+        "End-to-end automation from product browsing to payment processing - no manual work required.",
       details: [
-        "Product catalog management",
-        "Real-time inventory tracking",
-        "Order management system",
-        "Customer order history",
+        "Automated product catalog",
+        "Smart inventory management",
+        "Automated order processing",
+        "Payment automation",
       ],
     },
     {
       icon: BarChart3,
-      title: "Advanced Business Analytics",
+      title: "Business Intelligence Dashboard",
       description:
-        "Comprehensive insights into your business performance with sales tracking, customer analytics, and detailed reporting.",
+        "Real-time insights and analytics with automated reporting and performance monitoring.",
       details: [
-        "Sales performance metrics",
-        "Customer behavior analysis",
-        "Revenue tracking",
-        "Custom report generation",
-      ],
-    },
-    {
-      icon: CreditCard,
-      title: "Multiple Payment Solutions",
-      description:
-        "Accept payments through various methods including mobile wallets, bank transfers, and card payments with secure processing.",
-      details: [
-        "Cash on Delivery (COD)",
-        "Easypaisa & JazzCash",
-        "Bank transfer integration",
-        "Card payment processing",
+        "Live sales analytics",
+        "Customer behavior insights",
+        "Automated performance reports",
+        "ROI tracking & optimization",
       ],
     },
     {
       icon: Users,
-      title: "Customer Relationship Management",
+      title: "Customer Relationship Automation",
       description:
-        "Build and maintain customer relationships with detailed profiles, purchase history, and targeted marketing campaigns.",
+        "Automated customer management, segmentation, and personalized marketing campaigns.",
       details: [
-        "Customer profile management",
-        "Purchase history tracking",
-        "Segmentation & targeting",
-        "Loyalty program management",
-      ],
-    },
-    {
-      icon: Bell,
-      title: "Marketing Automation",
-      description:
-        "Automate your marketing with broadcast messages, promotional campaigns, and customer engagement tools.",
-      details: [
-        "Broadcast messaging",
-        "Promotional campaigns",
-        "Customer engagement",
-        "Referral programs",
-      ],
-    },
-  ];
-
-  const services = [
-    {
-      icon: Bot,
-      title: "Customized Chatbot Development",
-      description:
-        "Custom intelligent chatbots that completely replace human staff for WhatsApp customer service and order management.",
-      process: [
-        "Bot intelligence design",
-        "Conversation flow automation",
-        "Integration & testing",
-        "24/7 automated deployment",
+        "Automated customer profiles",
+        "Smart segmentation",
+        "Personalized automation",
+        "Loyalty program automation",
       ],
     },
     {
       icon: Workflow,
-      title: "Business Process Automation",
+      title: "Process Automation",
       description:
-        "Complete automation of your business workflows - from customer acquisition to order fulfillment without manual intervention.",
-      process: [
-        "Process analysis & mapping",
-        "Automation design",
-        "System integration",
-        "Automated optimization",
+        "Complete business process automation - from lead generation to order fulfillment.",
+      details: [
+        "Workflow automation",
+        "Task automation",
+        "Integration automation",
+        "Quality assurance automation",
       ],
     },
     {
-      icon: Settings,
-      title: "Custom Automation Solutions",
+      icon: TrendingUp,
+      title: "Scale Without Limits",
       description:
-        "Tailored automation systems designed specifically for your business needs and industry requirements.",
-      process: [
-        "Requirements analysis",
-        "Custom automation development",
-        "Integration & testing",
+        "Handle unlimited customers and orders without hiring additional staff.",
+      details: [
+        "Unlimited scalability",
+        "No capacity constraints",
         "Performance optimization",
+        "Growth acceleration",
       ],
-    },
-    {
-      icon: HeadphonesIcon,
-      title: "Automation Support & Maintenance",
-      description:
-        "Ongoing support to ensure your automated systems run smoothly and continuously optimize performance.",
-      process: [
-        "Performance monitoring",
-        "System optimization",
-        "Issue resolution",
-        "Feature updates",
-      ],
-    },
-  ];
-
-  const portfolioItems = [
-    {
-      title: "Hassan's Restaurant Chain",
-      category: "Food & Beverage Automation",
-      description:
-        "Complete automation system handling 500+ daily orders across 5 locations with zero manual WhatsApp management.",
-      metrics: [
-        "100% automated order processing",
-        "Zero manual replies needed",
-        "500+ orders handled daily by bots",
-      ],
-      image: "🤖",
-    },
-    {
-      title: "Fashion Hub Boutique",
-      category: "Retail Process Automation",
-      description:
-        "Customized chatbot completely replaced human staff for customer service, order taking, and inventory management.",
-      metrics: [
-        "90% reduction in staff costs",
-        "24/7 automated customer service",
-        "Zero manual order processing",
-      ],
-      image: "⚡",
-    },
-    {
-      title: "TechMart Electronics",
-      category: "Business Process Automation",
-      description:
-        "Fully automated e-commerce operations from product inquiry to delivery confirmation without human intervention.",
-      metrics: [
-        "100% automated operations",
-        "Zero manual work required",
-        "24/7 intelligent customer support",
-      ],
-      image: "🔧",
-    },
-    {
-      title: "Sweet Corner Bakery",
-      category: "Custom Order Automation",
-      description:
-        "Advanced automation system handling complex custom orders, special requests, and delivery scheduling automatically.",
-      metrics: [
-        "Complex order automation",
-        "Zero manual coordination",
-        "100% automated scheduling",
-      ],
-      image: "🎯",
     },
   ];
 
   const testimonials = [
     {
-      name: "Ahmed Hassan",
-      business: "Hassan's Restaurant Chain",
+      name: "David Chen",
+      business: "Golden Dragon Restaurant",
       role: "Owner",
-      text: "We completely eliminated the need for WhatsApp staff! The customized bot handles all 500+ daily orders automatically. Our operational costs dropped by 80% and we never miss an order.",
+      location: "Toronto, Canada",
+      text: "We eliminated our entire WhatsApp order staff! The automation handles 800+ daily orders perfectly. Our operational costs dropped by 75% and we never miss an order anymore.",
       rating: 5,
-      avatar: "AH",
-      metrics: "Zero manual work needed",
+      avatar: "DC",
+      metrics: "800+ daily orders automated",
+      savings: "$8,400/month staff savings",
     },
     {
-      name: "Fatima Khan",
-      business: "Fashion Hub Boutique",
+      name: "Sarah Williams",
+      business: "Fashion Forward Boutique",
       role: "Founder",
-      text: "No more hiring staff for WhatsApp management! The intelligent customized bot understands customer queries perfectly and handles everything automatically. We save PKR 50,000 monthly on staff costs.",
+      location: "London, UK",
+      text: "No more manual customer service! The intelligent automation understands customer queries perfectly and processes orders automatically. We're growing 300% faster now.",
       rating: 5,
-      avatar: "FK",
-      metrics: "100% automated operations",
+      avatar: "SW",
+      metrics: "300% growth acceleration",
+      savings: "Zero manual work needed",
     },
     {
-      name: "Ali Raza",
+      name: "Ahmed Hassan",
       business: "TechMart Electronics",
       role: "Managing Director",
-      text: "The automation is incredible! Our customized bot handles complex technical queries, processes orders, and manages inventory automatically. We operate 24/7 without any manual intervention.",
+      location: "Dubai, UAE",
+      text: "Complete business transformation! Our automation handles complex technical queries, processes bulk orders, and manages everything automatically. We operate 24/7 effortlessly.",
       rating: 5,
-      avatar: "AR",
-      metrics: "24/7 automated service",
+      avatar: "AH",
+      metrics: "24/7 automated operations",
+      savings: "$15,000/month operational savings",
     },
     {
-      name: "Sara Ahmed",
-      business: "Sweet Corner Bakery",
+      name: "Maria Rodriguez",
+      business: "Sweet Treats Bakery",
       role: "Co-owner",
-      text: "Even complex custom cake orders are handled automatically! The customized bot collects all specifications, schedules delivery, and processes payments without any manual work from our side.",
+      location: "Madrid, Spain",
+      text: "Even complex custom orders are handled automatically! The system collects specifications, schedules delivery, and processes payments without any manual intervention.",
       rating: 5,
-      avatar: "SA",
+      avatar: "MR",
       metrics: "Complex automation success",
+      savings: "100% manual work eliminated",
     },
   ];
 
@@ -437,42 +428,43 @@ const ChatBizWebsite = () => {
     setIsMenuOpen(false);
   };
 
-  // Add this inside your ChatBizWebsite component, before the return statement:
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "ChatBiz WhatsApp Automation",
+    name: "ChatBiz WhatsApp Business Automation",
     description:
-      "Complete WhatsApp e-commerce automation platform for Pakistani businesses",
+      "Global WhatsApp business automation platform that eliminates manual work for online businesses",
     url: "https://www.chatbiz.site",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web Browser",
     offers: {
       "@type": "Offer",
-      price: "6050",
-      priceCurrency: "PKR",
+      price: "1497",
+      priceCurrency: "USD",
       priceValidUntil: "2025-12-31",
     },
   };
 
-  // Add this JSX right after your opening <div> tag:
-  <Helmet>
-    <title>
-      ChatBiz - WhatsApp Business Automation Pakistan | Custom E-commerce Bots
-    </title>
-    <meta
-      name="description"
-      content="Pakistan's #1 WhatsApp business automation platform. Custom chatbots for e-commerce, order management, and customer service. 100% automated solutions for Pakistani businesses."
-    />
-    <meta
-      name="google-site-verification"
-      content="google-site-verification=google-site-verification=fWYgt9NzLbRwU531pCPVx53grQgNWFrdlQ2NjCsYtOc"
-    />
-    <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
-  </Helmet>;
-
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <Helmet>
+        <title>
+          ChatBiz - Global WhatsApp Business Automation | Eliminate Manual Work
+          Forever
+        </title>
+        <meta
+          name="description"
+          content="Transform your business with intelligent WhatsApp automation. Eliminate manual work, handle unlimited orders 24/7, and scale without hiring staff. Used by 1000+ businesses worldwide."
+        />
+        <meta
+          name="keywords"
+          content="whatsapp automation, business automation, chatbot, staff replacement, sales automation, order management"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+
       {/* Navigation */}
       <motion.nav
         initial={{ opacity: 0, y: -50 }}
@@ -487,14 +479,18 @@ const ChatBizWebsite = () => {
               onClick={() => scrollToSection("home")}
               style={{ cursor: "pointer" }}
             >
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                <MessageCircle className="w-7 h-7 text-white" />
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg overflow-hidden">
+                <img
+                  src="/logo.png"
+                  alt="ChatBiz Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   ChatBiz
                 </span>
-                <div className="text-xs text-gray-500">Business Automation</div>
+                <div className="text-xs text-gray-500">Global Automation</div>
               </div>
             </motion.div>
 
@@ -502,11 +498,11 @@ const ChatBizWebsite = () => {
             <div className="hidden lg:flex items-center space-x-8">
               {[
                 { name: "Home", id: "home" },
-                { name: "About", id: "about" },
+                { name: "Products", id: "products" },
+                { name: "Live Demo", id: "pizza-demo" },
                 { name: "Features", id: "features" },
-                { name: "Services", id: "services" },
                 { name: "Pricing", id: "pricing" },
-                { name: "Portfolio", id: "portfolio" },
+                { name: "Industries", id: "industries" },
                 { name: "Reviews", id: "testimonials" },
               ].map((item) => (
                 <button
@@ -526,7 +522,6 @@ const ChatBizWebsite = () => {
                 </button>
               ))}
 
-              {/* Book Demo Button in Navigation */}
               <motion.button
                 onClick={bookDemo}
                 whileHover={{ scale: 1.05 }}
@@ -543,7 +538,7 @@ const ChatBizWebsite = () => {
                 whileTap={{ scale: 0.95 }}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
               >
-                Contact Us
+                Get Started
               </motion.button>
             </div>
 
@@ -571,11 +566,11 @@ const ChatBizWebsite = () => {
               <div className="flex flex-col space-y-4 pt-4">
                 {[
                   { name: "Home", id: "home" },
-                  { name: "About", id: "about" },
+                  { name: "Products", id: "products" },
+                  { name: "Live Demo", id: "pizza-demo" },
                   { name: "Features", id: "features" },
-                  { name: "Services", id: "services" },
                   { name: "Pricing", id: "pricing" },
-                  { name: "Portfolio", id: "portfolio" },
+                  { name: "Industries", id: "industries" },
                   { name: "Reviews", id: "testimonials" },
                 ].map((item) => (
                   <button
@@ -597,7 +592,7 @@ const ChatBizWebsite = () => {
                   onClick={() => scrollToSection("contact")}
                   className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold text-center"
                 >
-                  Contact Us
+                  Get Started
                 </button>
               </div>
             </motion.div>
@@ -608,8 +603,6 @@ const ChatBizWebsite = () => {
       {/* Hero Section */}
       <section
         id="home"
-        itemScope
-        itemType="https://schema.org/Organization"
         className="pt-24 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
@@ -622,7 +615,7 @@ const ChatBizWebsite = () => {
           className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"
         />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-4  mt-10 sm:px-6 lg:px-8 relative">
           <motion.div
             variants={staggerContainer}
             initial="initial"
@@ -635,17 +628,17 @@ const ChatBizWebsite = () => {
             >
               <Zap className="w-5 h-5 text-yellow-500 mr-2" />
               <span className="text-gray-700 font-medium">
-                Pakistan's Leading Business Automation Platform
+                Trusted by 1000+ Businesses Worldwide
               </span>
             </motion.div>
 
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-6 leading-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-12 leading-tight"
             >
-              Transform Your Business with
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent block mt-2">
-                WhatsApp Commerce Automation
+              Automate Every Business
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent block mt-10">
+                Scale Without Hesitation
               </span>
             </motion.h1>
 
@@ -653,10 +646,9 @@ const ChatBizWebsite = () => {
               variants={fadeInUp}
               className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed"
             >
-              Complete e-commerce solution that runs entirely on WhatsApp. Fully
-              customized for your business needs with business process
-              automation. Let customers browse, order, and pay without leaving
-              their favorite chat app.
+              Transform your business with intelligent WhatsApp automation. Let
+              customers browse, order, and pay automatically while you eliminate
+              90% of manual work and scale without hiring staff.
             </motion.p>
 
             <motion.div
@@ -673,12 +665,12 @@ const ChatBizWebsite = () => {
                 className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all flex items-center justify-center group"
               >
                 <Calendar className="ml-0 mr-3 w-5 h-5 group-hover:rotate-12 transition-transform" />
-                Book Demo for Your Business
+                Book Free Automation Demo
                 <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
 
               <motion.button
-                onClick={() => scrollToSection("contact")}
+                onClick={tryPizzaDemo}
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)",
@@ -686,8 +678,9 @@ const ChatBizWebsite = () => {
                 whileTap={{ scale: 0.95 }}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all flex items-center justify-center group"
               >
-                Get Custom Solution
-                <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <Pizza className="ml-0 mr-3 w-5 h-5 group-hover:rotate-12 transition-transform" />
+                Try Live Pizza Demo
+                <ExternalLink className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
 
               <motion.button
@@ -696,37 +689,9 @@ const ChatBizWebsite = () => {
                 whileTap={{ scale: 0.95 }}
                 className="border-2 border-purple-600 text-purple-600 px-10 py-4 rounded-xl text-lg font-semibold hover:bg-purple-50 transition-all flex items-center justify-center"
               >
-                <Eye className="mr-3 w-5 h-5" />
+                <DollarSign className="mr-3 w-5 h-5" />
                 View Pricing
               </motion.button>
-            </motion.div>
-
-            {/* Prominent Demo Booking Section */}
-            <motion.div
-              variants={fadeInUp}
-              className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-3xl p-8 mb-16 max-w-4xl mx-auto border border-green-200"
-            >
-              <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-                <div className="text-left">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    See ChatBiz in Action!
-                  </h3>
-                  <p className="text-gray-600">
-                    Book a personalized demo according to your business
-                    requirements. See exactly how automation will work for your
-                    industry.
-                  </p>
-                </div>
-                <motion.button
-                  onClick={bookDemo}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center whitespace-nowrap"
-                >
-                  <Video className="w-5 h-5 mr-2" />
-                  Book Free Demo Now
-                </motion.button>
-              </div>
             </motion.div>
 
             <motion.div
@@ -734,30 +699,32 @@ const ChatBizWebsite = () => {
               className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
             >
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200">
-                <div className="text-4xl font-bold text-blue-600 mb-2">
-                  100%
-                </div>
+                <div className="text-4xl font-bold text-blue-600 mb-2">90%</div>
                 <div className="text-gray-600 font-medium">
-                  Custom Solutions
+                  Manual Work Eliminated
                 </div>
                 <div className="text-sm text-gray-500 mt-2">
-                  Tailored to your business
+                  Replace human staff with automation
                 </div>
               </div>
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200">
                 <div className="text-4xl font-bold text-purple-600 mb-2">
                   24/7
                 </div>
-                <div className="text-gray-600 font-medium">Automated Sales</div>
+                <div className="text-gray-600 font-medium">
+                  Automated Operations
+                </div>
                 <div className="text-sm text-gray-500 mt-2">
-                  Never miss an order
+                  Never miss an order again
                 </div>
               </div>
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200">
                 <div className="text-4xl font-bold text-green-600 mb-2">∞</div>
-                <div className="text-gray-600 font-medium">Scalability</div>
+                <div className="text-gray-600 font-medium">
+                  Unlimited Scalability
+                </div>
                 <div className="text-sm text-gray-500 mt-2">
-                  Grows with your business
+                  Handle any order volume
                 </div>
               </div>
             </motion.div>
@@ -765,13 +732,8 @@ const ChatBizWebsite = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <section
-        id="about"
-        itemScope
-        itemType="https://schema.org/Organization"
-        className="py-20 bg-white"
-      >
+      {/* Products Overview */}
+      <section id="products" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -780,12 +742,11 @@ const ChatBizWebsite = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Why Choose ChatBiz?
+              Our Automation Products
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We understand that every business is unique. That's why we don't
-              offer one-size-fits-all solutions with business automation
-              capabilities.
+              Intelligent automation systems designed to eliminate manual work
+              and transform how businesses operate on WhatsApp.
             </p>
           </motion.div>
 
@@ -797,39 +758,38 @@ const ChatBizWebsite = () => {
               className="space-y-8"
             >
               <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8">
-                <Target className="w-12 h-12 text-blue-600 mb-4" />
+                <Bot className="w-12 h-12 text-blue-600 mb-4" />
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Custom-Built for Your Business
+                  WhatsApp Business Automation
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  We analyze your specific business requirements and build a
-                  solution that perfectly fits your workflow, customer behavior,
-                  and growth objectives with automation features. No generic
-                  templates here.
+                  Complete automation platform that replaces your entire
+                  WhatsApp customer service team. Handles everything from
+                  product inquiries to order completion automatically.
                 </p>
               </div>
 
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8">
-                <Rocket className="w-12 h-12 text-purple-600 mb-4" />
+                <Workflow className="w-12 h-12 text-purple-600 mb-4" />
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Pakistani Market Expertise
+                  Process Automation Systems
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Deep understanding of local business practices, customer
-                  preferences, payment methods, and market dynamics. Built by
-                  Pakistanis, for Pakistani businesses.
+                  End-to-end business process automation that eliminates manual
+                  work across your entire operation - from lead generation to
+                  order fulfillment.
                 </p>
               </div>
 
               <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
-                <HeadphonesIcon className="w-12 h-12 text-green-600 mb-4" />
+                <Target className="w-12 h-12 text-green-600 mb-4" />
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Dedicated Support & Training
+                  Custom Automation Solutions
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Comprehensive training for your team, ongoing support, and
-                  regular consultations to ensure you're getting maximum value
-                  from your investment.
+                  Tailored automation systems built specifically for your
+                  industry and business model. Complete customization to match
+                  your exact requirements.
                 </p>
               </div>
             </motion.div>
@@ -846,44 +806,44 @@ const ChatBizWebsite = () => {
 
                 <div className="relative">
                   <h3 className="text-3xl font-bold text-gray-900 mb-6">
-                    The ChatBiz Difference
+                    Why Businesses Choose ChatBiz
                   </h3>
 
                   <div className="space-y-4">
                     <div className="flex items-center">
                       <CheckCircle className="w-6 h-6 text-green-500 mr-3" />
                       <span className="text-gray-700">
-                        No cookie-cutter solutions
+                        Eliminate 90% of manual work
                       </span>
                     </div>
                     <div className="flex items-center">
                       <CheckCircle className="w-6 h-6 text-green-500 mr-3" />
                       <span className="text-gray-700">
-                        Local payment gateway integrations
+                        Replace entire customer service teams
                       </span>
                     </div>
                     <div className="flex items-center">
                       <CheckCircle className="w-6 h-6 text-green-500 mr-3" />
                       <span className="text-gray-700">
-                        Urdu & English language support
+                        Handle unlimited orders 24/7
                       </span>
                     </div>
                     <div className="flex items-center">
                       <CheckCircle className="w-6 h-6 text-green-500 mr-3" />
                       <span className="text-gray-700">
-                        Industry-specific customizations
+                        Custom solutions for any industry
                       </span>
                     </div>
                     <div className="flex items-center">
                       <CheckCircle className="w-6 h-6 text-green-500 mr-3" />
                       <span className="text-gray-700">
-                        Business process automation
+                        Proven ROI within 30 days
                       </span>
                     </div>
                     <div className="flex items-center">
                       <CheckCircle className="w-6 h-6 text-green-500 mr-3" />
                       <span className="text-gray-700">
-                        Dedicated account management
+                        Global support & maintenance
                       </span>
                     </div>
                   </div>
@@ -904,11 +864,203 @@ const ChatBizWebsite = () => {
         </div>
       </section>
 
+      {/* Live Pizza Demo Section */}
+      <section
+        id="pizza-demo"
+        className="py-20 bg-gradient-to-br from-orange-50 to-red-50"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center bg-white/80 backdrop-blur-sm border border-orange-200 rounded-full px-6 py-3 mb-8 shadow-lg">
+              <Pizza className="w-5 h-5 text-orange-500 mr-2" />
+              <span className="text-gray-700 font-medium">
+                Live Demo Available Now
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Pizza Shop Automation
+              <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent block">
+                Live Demo System
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Experience our complete automation system in action. See how a
+              pizza shop operates with ZERO manual work - from customer orders
+              to dashboard management.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-orange-200">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mr-4">
+                    <MessageCircle className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      WhatsApp Ordering Bot
+                    </h3>
+                    <p className="text-gray-600">+92 332 994 5014</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-6">
+                  Try our live pizza ordering system. Type "menu" to experience
+                  complete automation - browse products, customize orders, and
+                  checkout automatically.
+                </p>
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <div className="font-semibold text-green-800">Features</div>
+                    <ul className="text-sm text-green-700 mt-2 space-y-1">
+                      <li>• Intelligent conversation</li>
+                      <li>• Product customization</li>
+                      <li>• Automatic checkout</li>
+                      <li>• Order tracking</li>
+                    </ul>
+                  </div>
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <div className="font-semibold text-blue-800">Results</div>
+                    <ul className="text-sm text-blue-700 mt-2 space-y-1">
+                      <li>• Zero manual work</li>
+                      <li>• 24/7 operations</li>
+                      <li>• Unlimited capacity</li>
+                      <li>• Perfect accuracy</li>
+                    </ul>
+                  </div>
+                </div>
+                <motion.button
+                  onClick={tryPizzaDemo}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Try Live WhatsApp Demo
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </motion.button>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-blue-200">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mr-4">
+                    <Monitor className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      Business Dashboard
+                    </h3>
+                    <p className="text-gray-600">Real-time Management</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-6">
+                  View the complete business dashboard that shows live orders,
+                  customer analytics, and automated operations in real-time.
+                </p>
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="bg-purple-50 p-4 rounded-lg">
+                    <div className="font-semibold text-purple-800">
+                      Analytics
+                    </div>
+                    <ul className="text-sm text-purple-700 mt-2 space-y-1">
+                      <li>• Live order tracking</li>
+                      <li>• Customer insights</li>
+                      <li>• Revenue analytics</li>
+                      <li>• Performance metrics</li>
+                    </ul>
+                  </div>
+                  <div className="bg-orange-50 p-4 rounded-lg">
+                    <div className="font-semibold text-orange-800">
+                      Management
+                    </div>
+                    <ul className="text-sm text-orange-700 mt-2 space-y-1">
+                      <li>• Menu management</li>
+                      <li>• Order processing</li>
+                      <li>• Customer database</li>
+                      <li>• Automation controls</li>
+                    </ul>
+                  </div>
+                </div>
+                <motion.button
+                  onClick={viewDashboard}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
+                >
+                  <Monitor className="w-5 h-5 mr-2" />
+                  View Live Dashboard
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </motion.button>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Demo Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto"
+          >
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+              Pizza Shop Automation Results
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                <div className="text-3xl font-bold text-green-600 mb-2">$0</div>
+                <div className="text-gray-600 font-medium">Staff Costs</div>
+                <div className="text-sm text-green-600 mt-1">
+                  100% automated
+                </div>
+              </div>
+              <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="text-3xl font-bold text-blue-600 mb-2">
+                  24/7
+                </div>
+                <div className="text-gray-600 font-medium">Operations</div>
+                <div className="text-sm text-blue-600 mt-1">Never closes</div>
+              </div>
+              <div className="text-center p-4 bg-purple-50 rounded-lg border border-purple-200">
+                <div className="text-3xl font-bold text-purple-600 mb-2">∞</div>
+                <div className="text-gray-600 font-medium">Order Capacity</div>
+                <div className="text-sm text-purple-600 mt-1">
+                  Unlimited scale
+                </div>
+              </div>
+              <div className="text-center p-4 bg-orange-50 rounded-lg border border-orange-200">
+                <div className="text-3xl font-bold text-orange-600 mb-2">
+                  15s
+                </div>
+                <div className="text-gray-600 font-medium">Response Time</div>
+                <div className="text-sm text-orange-600 mt-1">
+                  Instant service
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section
         id="features"
-        itemScope
-        itemType="https://schema.org/Organization"
         className="py-20 bg-gradient-to-br from-gray-50 to-blue-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -919,12 +1071,11 @@ const ChatBizWebsite = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Powerful Features for Every Business
+              Powerful Automation Features
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive tools and features that can be customized and
-              configured to match your exact business requirements with
-              automation capabilities.
+              Comprehensive automation capabilities designed to eliminate manual
+              work and transform your business operations completely.
             </p>
           </motion.div>
 
@@ -969,88 +1120,8 @@ const ChatBizWebsite = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section
-        id="services"
-        itemScope
-        itemType="https://schema.org/Organization"
-        className="py-20 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Our Automation Services
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Complete automation solutions that eliminate manual work and
-              reduce your need for human staff by up to 90%.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border border-gray-200"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <service.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 mb-6 leading-relaxed">
-                      {service.description}
-                    </p>
-
-                    <div className="space-y-3">
-                      <h4 className="font-medium text-gray-800">
-                        Our Process:
-                      </h4>
-                      <div className="grid grid-cols-2 gap-3">
-                        {service.process.map((step, idx) => (
-                          <div key={idx} className="flex items-center">
-                            <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                              <span className="text-xs font-semibold text-blue-600">
-                                {idx + 1}
-                              </span>
-                            </div>
-                            <span className="text-sm text-gray-600">
-                              {step}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* Pricing Section */}
-      <section
-        id="pricing"
-        itemScope
-        itemType="https://schema.org/Organization"
-        className="py-20 bg-gradient-to-br from-blue-50 to-purple-50"
-      >
+      <section id="pricing" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -1059,11 +1130,12 @@ const ChatBizWebsite = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Automation Pricing Plans
+              Investment in Automation
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose your automation level. All plans eliminate manual work and
-              include intelligent bots that handle everything automatically.
+              Professional automation systems that eliminate staff costs and
+              generate massive ROI. Choose your level of automation
+              transformation.
             </p>
           </motion.div>
 
@@ -1081,21 +1153,21 @@ const ChatBizWebsite = () => {
                 whileHover={{ y: -10, scale: 1.02 }}
                 className={`bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all border-2 relative overflow-hidden ${
                   pkg.popular
-                    ? "border-purple-500"
+                    ? "border-purple-500 ring-4 ring-purple-100"
                     : pkg.isCustom
-                    ? "border-yellow-500"
+                    ? "border-yellow-500 ring-4 ring-yellow-100"
                     : "border-gray-200"
                 }`}
               >
                 {pkg.popular && (
                   <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-center py-3 font-semibold">
-                    Most Popular
+                    ⭐ Most Popular
                   </div>
                 )}
 
                 {pkg.isCustom && (
                   <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-center py-3 font-semibold">
-                    Fully Customized
+                    ✨ Fully Custom
                   </div>
                 )}
 
@@ -1122,26 +1194,26 @@ const ChatBizWebsite = () => {
                       <span className="text-4xl font-bold text-gray-900">
                         {pkg.price}
                       </span>
-                      <span className="text-lg text-gray-600">
-                        {pkg.priceUSD}
-                      </span>
                     </div>
-                    <div className="text-gray-600 mb-3">
-                      {pkg.isCustom ? "Based on requirements" : "per month"}
+                    <div className="text-gray-600 mb-1">
+                      {pkg.monthlyPrice}/month
                     </div>
-                    <div className="text-sm text-gray-500 bg-gray-50 rounded-lg p-3">
+                    <div className="text-sm text-gray-500 bg-gray-50 rounded-lg p-3 mb-4">
                       <div className="flex items-center justify-between">
-                        <span>Setup Cost:</span>
-                        <span className="font-medium">
-                          {pkg.setup} ({pkg.setupUSD})
-                        </span>
+                        <span>Setup Investment:</span>
+                        <span className="font-medium">{pkg.setup}</span>
                       </div>
                     </div>
+                    {pkg.savings && (
+                      <div className="text-sm text-green-600 font-medium bg-green-50 rounded-lg p-2 text-center">
+                        💰 {pkg.savings}
+                      </div>
+                    )}
                   </div>
 
                   <div className="space-y-4 mb-8">
                     <h4 className="font-semibold text-gray-800">
-                      What's Included:
+                      Automation Includes:
                     </h4>
                     <ul className="space-y-3">
                       {pkg.features.map((feature, fIndex) => (
@@ -1168,10 +1240,10 @@ const ChatBizWebsite = () => {
                         ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-lg"
                         : pkg.isCustom
                         ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:shadow-lg"
-                        : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                        : "bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:shadow-lg"
                     }`}
                   >
-                    {pkg.isCustom ? "Get Custom Quote" : "Contact for Setup"}
+                    {pkg.isCustom ? "Get Custom Quote" : "Start Automation"}
                   </motion.button>
                 </div>
               </motion.div>
@@ -1184,34 +1256,39 @@ const ChatBizWebsite = () => {
             viewport={{ once: true }}
             className="text-center mt-16"
           >
-            <div className="bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Custom Enterprise Automation
+                ROI Calculation: Starter Package Example
               </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Need complete business transformation? We build enterprise-grade
-                automation systems that can handle thousands of orders daily
-                with zero manual intervention. Perfect for large operations and
-                franchises.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">
-                    100% Automated
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div className="text-center p-4 bg-red-50 rounded-lg border border-red-200">
+                  <div className="text-2xl font-bold text-red-600">$1,500</div>
+                  <div className="text-gray-600">Monthly Staff Costs</div>
+                  <div className="text-sm text-red-600">
+                    1-2 WhatsApp staff @ $750-1500/month
                   </div>
-                  <div className="text-gray-600">Zero manual work</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-600">
-                    Unlimited
+                <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="text-2xl font-bold text-blue-600">$97</div>
+                  <div className="text-gray-600">ChatBiz Monthly Cost</div>
+                  <div className="text-sm text-blue-600">
+                    Complete automation system
                   </div>
-                  <div className="text-gray-600">Order processing capacity</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">24/7</div>
-                  <div className="text-gray-600">Automated operations</div>
+                <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                  <div className="text-2xl font-bold text-green-600">
+                    $1,403
+                  </div>
+                  <div className="text-gray-600">Monthly Savings</div>
+                  <div className="text-sm text-green-600">
+                    1,447% ROI every month
+                  </div>
                 </div>
               </div>
+              <p className="text-gray-600 mb-6">
+                <strong>Payback Period:</strong> 17 days |{" "}
+                <strong>Annual Savings:</strong> $16,836
+              </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.button
                   onClick={bookDemo}
@@ -1219,8 +1296,8 @@ const ChatBizWebsite = () => {
                   whileTap={{ scale: 0.95 }}
                   className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
                 >
-                  <Video className="w-4 h-4 mr-2" />
-                  Book Enterprise Demo
+                  <Calculator className="w-4 h-4 mr-2" />
+                  Calculate Your ROI
                 </motion.button>
                 <motion.button
                   onClick={() => scrollToSection("contact")}
@@ -1228,7 +1305,7 @@ const ChatBizWebsite = () => {
                   whileTap={{ scale: 0.95 }}
                   className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
                 >
-                  Discuss Full Automation
+                  Start Saving Now
                 </motion.button>
               </div>
             </div>
@@ -1236,79 +1313,9 @@ const ChatBizWebsite = () => {
         </div>
       </section>
 
-      {/* Portfolio Section */}
+      {/* Industries Section */}
       <section
-        id="portfolio"
-        itemScope
-        itemType="https://schema.org/Organization"
-        className="py-20 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Automation Success Stories
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See how our intelligent automation has completely eliminated
-              manual work for businesses across Pakistan.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
-            {portfolioItems.map((item, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border border-gray-200 group"
-              >
-                <div className="flex items-start space-x-4 mb-6">
-                  <div className="text-4xl">{item.image}</div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-1">
-                      {item.title}
-                    </h3>
-                    <span className="text-sm text-purple-600 font-medium">
-                      {item.category}
-                    </span>
-                  </div>
-                </div>
-
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {item.description}
-                </p>
-
-                <div className="grid grid-cols-1 gap-3">
-                  <h4 className="font-semibold text-gray-800">Key Results:</h4>
-                  {item.metrics.map((metric, idx) => (
-                    <div key={idx} className="flex items-center">
-                      <TrendingUp className="w-4 h-4 text-green-500 mr-2" />
-                      <span className="text-sm text-gray-600">{metric}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section
-        id="testimonials"
-        itemScope
-        itemType="https://schema.org/Organization"
+        id="industries"
         className="py-20 bg-gradient-to-br from-gray-50 to-blue-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1319,11 +1326,79 @@ const ChatBizWebsite = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              What Business Owners Say About Our Automation
+              Automation for Every Industry
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our automation systems work for any business that sells online.
+              From restaurants to retail, we eliminate manual work across all
+              industries.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
+            {industries.map((industry, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                whileHover={{ y: -10 }}
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border border-gray-200 group"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <industry.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      {industry.title}
+                    </h3>
+                    <p className="text-gray-600 mb-6 leading-relaxed">
+                      {industry.description}
+                    </p>
+
+                    <div className="space-y-3">
+                      <h4 className="font-medium text-gray-800">
+                        Perfect for:
+                      </h4>
+                      <div className="grid grid-cols-2 gap-3">
+                        {industry.examples.map((example, idx) => (
+                          <div key={idx} className="flex items-center">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                            <span className="text-sm text-gray-600">
+                              {example}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Global Success Stories
             </h2>
             <p className="text-xl text-gray-600">
-              Real feedback from business owners who eliminated manual work
-              completely with our intelligent automation
+              Businesses worldwide have eliminated manual work and transformed
+              their operations with ChatBiz automation
             </p>
           </motion.div>
 
@@ -1355,6 +1430,9 @@ const ChatBizWebsite = () => {
                     <div className="text-sm text-purple-600 font-medium">
                       {testimonial.business}
                     </div>
+                    <div className="text-xs text-gray-500">
+                      {testimonial.location}
+                    </div>
                   </div>
                 </div>
 
@@ -1371,12 +1449,22 @@ const ChatBizWebsite = () => {
                   "{testimonial.text}"
                 </p>
 
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
-                  <div className="flex items-center">
-                    <BarChart3 className="w-5 h-5 text-blue-600 mr-2" />
-                    <span className="text-sm font-medium text-gray-800">
-                      {testimonial.metrics}
-                    </span>
+                <div className="grid grid-cols-1 gap-3">
+                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
+                    <div className="flex items-center">
+                      <BarChart3 className="w-5 h-5 text-blue-600 mr-2" />
+                      <span className="text-sm font-medium text-gray-800">
+                        {testimonial.metrics}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-4">
+                    <div className="flex items-center">
+                      <DollarSign className="w-5 h-5 text-green-600 mr-2" />
+                      <span className="text-sm font-medium text-gray-800">
+                        {testimonial.savings}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -1388,8 +1476,6 @@ const ChatBizWebsite = () => {
       {/* Contact Section */}
       <section
         id="contact"
-        itemScope
-        itemType="https://schema.org/Organization"
         className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-black/20"></div>
@@ -1410,12 +1496,11 @@ const ChatBizWebsite = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Ready for Complete Automation?
+              Ready to Eliminate Manual Work?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Stop manual work forever. Let our intelligent bots and automation
-              systems handle your entire business process while you focus on
-              growth.
+              Transform your business with intelligent automation. Stop manual
+              work forever and scale without limits.
             </p>
           </motion.div>
 
@@ -1428,7 +1513,7 @@ const ChatBizWebsite = () => {
             >
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
                 <h3 className="text-2xl font-bold text-white mb-6">
-                  Get Complete Automation
+                  Start Your Automation Journey
                 </h3>
 
                 <div className="space-y-6">
@@ -1439,7 +1524,7 @@ const ChatBizWebsite = () => {
                     <Bot className="w-8 h-8 text-white" />
                     <div>
                       <div className="text-white font-semibold">
-                        Call for Bot Demo
+                        Global Support Hotline
                       </div>
                       <a
                         href="tel:+923329934858"
@@ -1454,10 +1539,10 @@ const ChatBizWebsite = () => {
                     whileHover={{ scale: 1.05 }}
                     className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl"
                   >
-                    <Workflow className="w-8 h-8 text-white" />
+                    <Mail className="w-8 h-8 text-white" />
                     <div>
                       <div className="text-white font-semibold">
-                        Email for Automation
+                        Automation Specialists
                       </div>
                       <a
                         href="mailto:realahmedali4@gmail.com"
@@ -1475,16 +1560,56 @@ const ChatBizWebsite = () => {
                     <MessageSquare className="w-8 h-8 text-white" />
                     <div>
                       <div className="text-white font-semibold">
-                        WhatsApp Us
+                        WhatsApp Automation
                       </div>
                       <a
-                        href="https://wa.me/923329934858?text=I want complete business automation"
+                        href="https://wa.me/923329934858?text=I want to eliminate manual work with automation"
                         className="text-blue-200 hover:text-white transition-colors"
                       >
-                        Start Automation
+                        Get Instant Quote
                       </a>
                     </div>
                   </motion.div>
+                </div>
+              </div>
+
+              {/* Live Demo Section */}
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-white mb-6">
+                  Try Our Live Demo
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl">
+                    <Pizza className="w-8 h-8 text-orange-400" />
+                    <div>
+                      <div className="text-white font-semibold">
+                        Pizza Shop Demo
+                      </div>
+                      <div className="text-blue-200 text-sm">
+                        +92 332 994 5014 - Type "menu"
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex space-x-3">
+                    <motion.button
+                      onClick={tryPizzaDemo}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
+                    >
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      Try Bot
+                    </motion.button>
+                    <motion.button
+                      onClick={viewDashboard}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
+                    >
+                      <Monitor className="w-4 h-4 mr-2" />
+                      View Dashboard
+                    </motion.button>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -1496,7 +1621,7 @@ const ChatBizWebsite = () => {
               className="bg-white/10 backdrop-blur-sm rounded-2xl p-8"
             >
               <h3 className="text-2xl font-bold text-white mb-6">
-                How We Automate Your Business
+                Our Automation Process
               </h3>
 
               <div className="space-y-6">
@@ -1506,11 +1631,11 @@ const ChatBizWebsite = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-semibold mb-2">
-                      Process Analysis
+                      Business Analysis
                     </h4>
                     <p className="text-blue-100">
                       We analyze your current manual processes and identify
-                      automation opportunities.
+                      automation opportunities for maximum impact.
                     </p>
                   </div>
                 </div>
@@ -1521,11 +1646,11 @@ const ChatBizWebsite = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-semibold mb-2">
-                      Customized Bot Development
+                      Custom Automation Design
                     </h4>
                     <p className="text-blue-100">
-                      We build intelligent customized bots that completely
-                      replace human staff for WhatsApp management.
+                      We design and build intelligent automation systems
+                      specifically tailored to your business requirements.
                     </p>
                   </div>
                 </div>
@@ -1536,11 +1661,11 @@ const ChatBizWebsite = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-semibold mb-2">
-                      Automation Setup
+                      Implementation & Training
                     </h4>
                     <p className="text-blue-100">
-                      Complete automation deployment with testing to ensure 100%
-                      reliability.
+                      Complete system deployment with comprehensive team
+                      training and optimization for perfect performance.
                     </p>
                   </div>
                 </div>
@@ -1550,10 +1675,13 @@ const ChatBizWebsite = () => {
                     4
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold mb-2">Go Live</h4>
+                    <h4 className="text-white font-semibold mb-2">
+                      24/7 Automated Operations
+                    </h4>
                     <p className="text-blue-100">
-                      Your business runs automatically 24/7 without any manual
-                      intervention needed.
+                      Your business operates automatically with zero manual
+                      intervention, unlimited scalability, and continuous
+                      optimization.
                     </p>
                   </div>
                 </div>
@@ -1591,17 +1719,17 @@ const ChatBizWebsite = () => {
                 className="bg-white text-purple-600 px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all inline-flex items-center justify-center"
               >
                 <Bot className="mr-3 w-5 h-5" />
-                Call for Automation
+                Call Automation Experts
               </motion.a>
 
               <motion.a
-                href="https://wa.me/923329934858?text=I want complete business automation"
+                href="https://wa.me/923329934858?text=I want to eliminate manual work with automation"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="border-2 border-white text-white px-10 py-4 rounded-xl text-lg font-semibold hover:bg-white hover:text-purple-600 transition-all inline-flex items-center justify-center"
               >
                 <Workflow className="mr-3 w-5 h-5" />
-                WhatsApp Automation
+                Start Automation
               </motion.a>
             </div>
           </motion.div>
@@ -1614,29 +1742,32 @@ const ChatBizWebsite = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <MessageCircle className="w-6 h-6 text-white" />
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden">
+                  <img
+                    src="/logo.png"
+                    alt="ChatBiz Logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div>
                   <span className="text-2xl font-bold">ChatBiz</span>
                   <div className="text-sm text-gray-400">
-                    Business Automation Solutions
+                    Global Business Automation
                   </div>
                 </div>
               </div>
               <p className="text-gray-400 mb-6 leading-relaxed max-w-md">
-                Pakistan's leading business automation platform, providing
-                intelligent bots and process automation that eliminate manual
-                work completely.
+                Leading provider of intelligent business automation solutions.
+                We eliminate manual work for businesses worldwide through
+                cutting-edge WhatsApp automation technology.
               </p>
               <div className="flex items-center space-x-4 mb-6">
                 <Bot className="w-5 h-5 text-green-400" />
                 <span className="text-gray-400 text-sm">
-                  100% Automated & Customized Bots
+                  Trusted by 1000+ businesses globally
                 </span>
               </div>
 
-              {/* Prominent Demo Booking in Footer */}
               <motion.button
                 onClick={bookDemo}
                 whileHover={{ scale: 1.05 }}
@@ -1644,50 +1775,54 @@ const ChatBizWebsite = () => {
                 className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center"
               >
                 <Calendar className="w-4 h-4 mr-2" />
-                Book Your Demo Now
+                Book Your Demo
               </motion.button>
             </div>
 
             <div>
-              <h3 className="font-semibold mb-6 text-lg">Our Solutions</h3>
+              <h3 className="font-semibold mb-6 text-lg">
+                Automation Solutions
+              </h3>
               <ul className="space-y-3 text-gray-400">
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  Intelligent Customized Chatbots
+                  WhatsApp Business Automation
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  Business Process Automation
-                </li>
-                <li className="hover:text-white transition-colors cursor-pointer">
-                  24/7 Automated Operations
-                </li>
-                <li className="hover:text-white transition-colors cursor-pointer">
-                  Staff Replacement Automation
+                  Process Automation Systems
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
                   Custom Automation Development
+                </li>
+                <li className="hover:text-white transition-colors cursor-pointer">
+                  Staff Replacement Solutions
+                </li>
+                <li className="hover:text-white transition-colors cursor-pointer">
+                  24/7 Automated Operations
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-semibold mb-6 text-lg">Support</h3>
+              <h3 className="font-semibold mb-6 text-lg">Support & Contact</h3>
               <ul className="space-y-3 text-gray-400">
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  24/7 Automation Support
+                  24/7 Global Support
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  Bot Training & Setup
+                  Implementation Services
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  Process Optimization
+                  Training & Optimization
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  Automation Consulting
+                  Enterprise Solutions
                 </li>
               </ul>
 
               <div className="mt-6">
-                <h4 className="font-semibold mb-4 text-lg">Contact Info</h4>
+                <h4 className="font-semibold mb-4 text-lg">
+                  Global Headquarters
+                </h4>
                 <ul className="space-y-3 text-gray-400">
                   <li className="flex items-center">
                     <Phone className="w-4 h-4 mr-3" />
@@ -1709,15 +1844,15 @@ const ChatBizWebsite = () => {
                   </li>
                   <li className="flex items-center">
                     <Globe className="w-4 h-4 mr-3" />
-                    Rawalpindi, Pakistan
+                    Global Operations
                   </li>
                   <li className="flex items-center">
                     <MessageSquare className="w-4 h-4 mr-3" />
                     <a
-                      href="https://wa.me/923329934858?text=I want automation support"
+                      href="https://wa.me/923329934858?text=I need automation support"
                       className="hover:text-white transition-colors"
                     >
-                      Automation Support 24/7
+                      24/7 WhatsApp Support
                     </a>
                   </li>
                 </ul>
@@ -1728,8 +1863,8 @@ const ChatBizWebsite = () => {
           <div className="border-t border-gray-800 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-gray-400 mb-4 md:mb-0">
-                © 2025 ChatBiz. All rights reserved. Built with ❤️ for Pakistani
-                businesses seeking complete automation.
+                © 2025 ChatBiz Global. All rights reserved. Transforming
+                businesses worldwide through intelligent automation.
               </p>
               <div className="flex space-x-6 text-gray-400">
                 <span className="hover:text-white transition-colors cursor-pointer">
@@ -1739,7 +1874,7 @@ const ChatBizWebsite = () => {
                   Terms of Service
                 </span>
                 <span className="hover:text-white transition-colors cursor-pointer">
-                  Support
+                  Global Support
                 </span>
               </div>
             </div>
