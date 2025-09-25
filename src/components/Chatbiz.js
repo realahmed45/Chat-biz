@@ -1,45 +1,484 @@
-import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
 import {
   MessageCircle,
-  ShoppingCart,
-  BarChart3,
-  Users,
-  Calculator,
-  Zap,
-  Check,
-  Star,
+  Send,
   Phone,
-  Mail,
+  ShoppingCart,
+  Pizza,
+  Star,
   ArrowRight,
+  Bot,
+  Scissors,
+  Dumbbell,
+  Car,
+  Home,
+  Briefcase,
+  Coffee,
+  Heart,
+  GraduationCap,
+  Zap,
+  Globe,
+  TrendingUp,
+  Award,
+  ExternalLink,
+  Play,
+  Sparkles,
+  Rocket,
+  Building,
   Menu,
   X,
-  Smartphone,
-  TrendingUp,
-  Clock,
-  Bot,
-  MessageSquare,
-  Target,
-  Rocket,
-  Award,
-  CheckCircle,
-  Calendar,
-  Video,
-  Pizza,
-  ExternalLink,
+  Check,
+  Calculator,
+  Mail,
   Monitor,
-  DollarSign,
-  Utensils,
-  Coffee,
+  BarChart3,
 } from "lucide-react";
 
-const RestaurantAutomationWebsite = () => {
+const ChatBizPlatform = () => {
+  const [selectedDemo, setSelectedDemo] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const [conversationState, setConversationState] = useState("welcome");
+  const [cart, setCart] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const { scrollYProgress } = useScroll();
-  const yRange = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
 
+  // Business categories with demo data
+  const businessCategories = [
+    {
+      id: "restaurant",
+      name: "Restaurant",
+      icon: Pizza,
+      color: "from-orange-500 to-red-500",
+      description: "Complete food ordering automation",
+      stats: { customers: "2,500+", savings: "$3,200/mo", orders: "450/day" },
+      menu: [
+        {
+          name: "Margherita Pizza",
+          price: 14.99,
+          description: "Fresh mozzarella, basil, tomato",
+        },
+        {
+          name: "Chicken Burger",
+          price: 12.99,
+          description: "Grilled chicken, lettuce, mayo",
+        },
+        {
+          name: "Caesar Salad",
+          price: 9.99,
+          description: "Crisp romaine, parmesan, croutons",
+        },
+      ],
+    },
+    {
+      id: "salon",
+      name: "Beauty Salon",
+      icon: Scissors,
+      color: "from-pink-500 to-purple-500",
+      description: "Appointment booking & service management",
+      stats: { customers: "1,800+", savings: "$2,400/mo", bookings: "120/day" },
+      menu: [
+        {
+          name: "Hair Cut & Style",
+          price: 45.0,
+          description: "Professional cut and styling",
+        },
+        {
+          name: "Facial Treatment",
+          price: 65.0,
+          description: "Deep cleansing facial",
+        },
+        {
+          name: "Manicure & Pedicure",
+          price: 35.0,
+          description: "Complete nail care",
+        },
+      ],
+    },
+    {
+      id: "gym",
+      name: "Fitness Center",
+      icon: Dumbbell,
+      color: "from-green-500 to-teal-500",
+      description: "Membership & class scheduling automation",
+      stats: { customers: "3,200+", savings: "$4,100/mo", classes: "85/day" },
+      menu: [
+        {
+          name: "Monthly Membership",
+          price: 79.99,
+          description: "Full gym access + classes",
+        },
+        {
+          name: "Personal Training",
+          price: 120.0,
+          description: "1-on-1 training session",
+        },
+        {
+          name: "Group Fitness Class",
+          price: 25.0,
+          description: "High-intensity group workout",
+        },
+      ],
+    },
+    {
+      id: "automotive",
+      name: "Auto Service",
+      icon: Car,
+      color: "from-blue-500 to-indigo-500",
+      description: "Service booking & maintenance tracking",
+      stats: { customers: "1,200+", savings: "$2,800/mo", services: "65/day" },
+      menu: [
+        {
+          name: "Oil Change Service",
+          price: 49.99,
+          description: "Full synthetic oil change",
+        },
+        {
+          name: "Brake Inspection",
+          price: 89.99,
+          description: "Complete brake system check",
+        },
+        {
+          name: "Tire Rotation",
+          price: 29.99,
+          description: "4-wheel tire rotation",
+        },
+      ],
+    },
+    {
+      id: "realestate",
+      name: "Real Estate",
+      icon: Home,
+      color: "from-emerald-500 to-green-500",
+      description: "Property inquiry & viewing automation",
+      stats: { customers: "850+", savings: "$3,500/mo", inquiries: "180/day" },
+      menu: [
+        {
+          name: "Property Viewing",
+          price: 0.0,
+          description: "Schedule a property tour",
+        },
+        {
+          name: "Market Analysis",
+          price: 150.0,
+          description: "Comprehensive market report",
+        },
+        {
+          name: "Consultation",
+          price: 0.0,
+          description: "Free real estate consultation",
+        },
+      ],
+    },
+    {
+      id: "consulting",
+      name: "Business Consulting",
+      icon: Briefcase,
+      color: "from-purple-500 to-violet-500",
+      description: "Client consultation & project management",
+      stats: {
+        customers: "650+",
+        savings: "$5,200/mo",
+        consultations: "45/day",
+      },
+      menu: [
+        {
+          name: "Strategy Consultation",
+          price: 250.0,
+          description: "2-hour strategy session",
+        },
+        {
+          name: "Business Plan Review",
+          price: 400.0,
+          description: "Complete plan analysis",
+        },
+        {
+          name: "Market Research",
+          price: 350.0,
+          description: "Industry analysis report",
+        },
+      ],
+    },
+    {
+      id: "cafe",
+      name: "Coffee Shop",
+      icon: Coffee,
+      color: "from-amber-500 to-orange-500",
+      description: "Coffee ordering & loyalty programs",
+      stats: { customers: "1,950+", savings: "$1,800/mo", orders: "320/day" },
+      menu: [
+        {
+          name: "Espresso Latte",
+          price: 4.5,
+          description: "Rich espresso with steamed milk",
+        },
+        {
+          name: "Blueberry Muffin",
+          price: 3.25,
+          description: "Fresh baked with real blueberries",
+        },
+        {
+          name: "Iced Americano",
+          price: 3.75,
+          description: "Cold brew with ice",
+        },
+      ],
+    },
+    {
+      id: "healthcare",
+      name: "Healthcare",
+      icon: Heart,
+      color: "from-red-500 to-pink-500",
+      description: "Appointment scheduling & patient management",
+      stats: {
+        customers: "2,100+",
+        savings: "$4,500/mo",
+        appointments: "95/day",
+      },
+      menu: [
+        {
+          name: "General Consultation",
+          price: 120.0,
+          description: "45-minute consultation",
+        },
+        {
+          name: "Health Checkup",
+          price: 200.0,
+          description: "Comprehensive health screening",
+        },
+        {
+          name: "Follow-up Visit",
+          price: 80.0,
+          description: "25-minute follow-up",
+        },
+      ],
+    },
+    {
+      id: "education",
+      name: "Education Center",
+      icon: GraduationCap,
+      color: "from-cyan-500 to-blue-500",
+      description: "Course enrollment & student management",
+      stats: {
+        customers: "1,400+",
+        savings: "$2,900/mo",
+        enrollments: "75/day",
+      },
+      menu: [
+        {
+          name: "Web Development Course",
+          price: 599.0,
+          description: "12-week intensive program",
+        },
+        {
+          name: "Digital Marketing",
+          price: 399.0,
+          description: "8-week certification course",
+        },
+        {
+          name: "Python Programming",
+          price: 499.0,
+          description: "10-week beginner to advanced",
+        },
+      ],
+    },
+    {
+      id: "retail",
+      name: "Retail Store",
+      icon: ShoppingCart,
+      color: "from-teal-500 to-green-500",
+      description: "Product ordering & inventory management",
+      stats: { customers: "3,500+", savings: "$2,600/mo", orders: "280/day" },
+      menu: [
+        {
+          name: "Wireless Headphones",
+          price: 89.99,
+          description: "Bluetooth 5.0, 24hr battery",
+        },
+        {
+          name: "Smart Watch",
+          price: 199.99,
+          description: "Fitness tracking, GPS enabled",
+        },
+        {
+          name: "Phone Case",
+          price: 24.99,
+          description: "Drop-proof protection",
+        },
+      ],
+    },
+  ];
+
+  const packages = [
+    {
+      name: "Business Starter",
+      monthlyPrice: "$97",
+      setup: "$497",
+      description:
+        "Perfect for small businesses ready to automate customer interactions",
+      features: [
+        "Complete WhatsApp automation setup",
+        "Any business type supported",
+        "Up to 500 automated interactions/month",
+        "Smart conversation handling",
+        "Business dashboard",
+        "Customer database",
+        "Payment processing integration",
+        "25+ language support",
+        "Email support",
+        "Basic analytics",
+        "Monthly system backup",
+        "Mobile app access",
+      ],
+      popular: false,
+      color: "from-blue-500 to-cyan-500",
+      icon: Building,
+      savings: "Saves $1,500/month in staff costs",
+    },
+    {
+      name: "Business Pro",
+      monthlyPrice: "$197",
+      setup: "$697",
+      description:
+        "Complete automation for growing businesses across all industries",
+      features: [
+        "Advanced WhatsApp automation",
+        "Unlimited business interactions",
+        "AI-powered conversation handling",
+        "Advanced business dashboard",
+        "Multi-payment integration",
+        "Inventory/appointment management",
+        "Customer targeting & segmentation",
+        "Broadcast to 1000+ customers",
+        "Advanced reporting & analytics",
+        "Priority support",
+        "Discount & promotion automation",
+        "Weekly optimization calls",
+        "Staff training included",
+        "Custom integrations",
+      ],
+      popular: true,
+      color: "from-orange-500 to-red-500",
+      icon: Rocket,
+      savings: "Saves $3,200/month in staff costs",
+    },
+    {
+      name: "Enterprise",
+      monthlyPrice: "$297",
+      setup: "$997",
+      description: "Enterprise solution for multi-location businesses",
+      features: [
+        "Multi-location management",
+        "Unlimited everything",
+        "Advanced AI with custom training",
+        "Enterprise-wide analytics",
+        "Custom API integrations",
+        "Advanced automation workflows",
+        "Unlimited broadcasting",
+        "Real-time business intelligence",
+        "24/7 dedicated support",
+        "Multi-user management",
+        "Custom feature development",
+        "Daily optimization",
+        "Enterprise security & compliance",
+        "Dedicated success manager",
+      ],
+      popular: false,
+      color: "from-purple-500 to-pink-500",
+      icon: Award,
+      savings: "Saves $8,000+/month in staff costs",
+    },
+  ];
+
+  const features = [
+    {
+      icon: Bot,
+      title: "AI-Powered Automation",
+      description:
+        "Smart chatbots handle complete customer interactions across any business type with natural conversation flow.",
+      details: [
+        "Natural language processing",
+        "Context-aware responses",
+        "Multi-turn conversations",
+        "Industry-specific training",
+      ],
+    },
+    {
+      icon: Globe,
+      title: "Global Multi-Language Support",
+      description:
+        "Serve customers worldwide with automatic translation and localization for 25+ languages.",
+      details: [
+        "Real-time translation",
+        "Cultural localization",
+        "Currency conversion",
+        "Timezone handling",
+      ],
+    },
+    {
+      icon: Zap,
+      title: "5-Minute Setup",
+      description:
+        "Get your business automation running instantly with our plug-and-play system.",
+      details: [
+        "One-click WhatsApp integration",
+        "Pre-built industry templates",
+        "Automatic configuration",
+        "Instant deployment",
+      ],
+    },
+    {
+      icon: BarChart3,
+      title: "Advanced Analytics",
+      description:
+        "Real-time insights into customer behavior, sales performance, and automation effectiveness.",
+      details: [
+        "Live performance dashboards",
+        "Customer journey tracking",
+        "Revenue analytics",
+        "Optimization recommendations",
+      ],
+    },
+  ];
+
+  const results = [
+    {
+      business: "Mediterranean Restaurant Chain",
+      location: "London, UK",
+      before: "$4,500/month staff costs + missed orders",
+      after: "$197/month automation + zero missed orders",
+      savings: "$4,303/month savings",
+      improvement: "400% more orders processed",
+    },
+    {
+      business: "Elite Fitness Centers",
+      location: "Dubai, UAE",
+      before: "$3,200/month booking staff + scheduling errors",
+      after: "$197/month automation + perfect scheduling",
+      savings: "$3,003/month savings",
+      improvement: "24/7 class booking, 300% member satisfaction",
+    },
+    {
+      business: "Premium Auto Service",
+      location: "Toronto, Canada",
+      before: "$2,800/month appointment staff + limited hours",
+      after: "$97/month automation + 24/7 booking",
+      savings: "$2,703/month savings",
+      improvement: "500% increase in after-hours bookings",
+    },
+  ];
+
+  const globalStats = [
+    { label: "Active Businesses", value: "25,000+", icon: Building },
+    { label: "Countries Served", value: "47", icon: Globe },
+    { label: "Daily Transactions", value: "500K+", icon: TrendingUp },
+    { label: "Customer Satisfaction", value: "99.8%", icon: Star },
+  ];
+
+  // Scroll handling
   useEffect(() => {
     const handleScroll = () => {
       const sections = [
@@ -67,32 +506,18 @@ const RestaurantAutomationWebsite = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: "easeOut" },
-  };
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    setIsMenuOpen(false);
   };
 
   const contactUs = () => {
     const message =
-      "Hi! I want WhatsApp automation for my restaurant. Can you show me how this works for my business?";
+      "Hi! I want WhatsApp automation for my business. Can you show me how this works?";
     const whatsappUrl = `https://wa.me/923329934858?text=${encodeURIComponent(
-      message
-    )}`;
-    window.open(whatsappUrl, "_blank");
-  };
-
-  const tryPizzaDemo = () => {
-    const message = "menu";
-    const whatsappUrl = `https://wa.me/923329945014?text=${encodeURIComponent(
       message
     )}`;
     window.open(whatsappUrl, "_blank");
@@ -102,220 +527,721 @@ const RestaurantAutomationWebsite = () => {
     window.open("https://pizza-shop-dashboard.vercel.app/", "_blank");
   };
 
-  const packages = [
-    {
-      name: "Restaurant Starter",
-      monthlyPrice: "$97",
-      setup: "$497",
-      description:
-        "Perfect for small restaurants ready to automate WhatsApp orders",
-      features: [
-        "Complete WhatsApp automation setup",
-        "Up to 50 menu items",
-        "300 automated orders per month",
-        "Smart ordering chatbot",
-        "Restaurant dashboard",
-        "Order tracking & management",
-        "Customer database",
-        "Payment processing",
-        "Email support",
-        "Cash on Delivery support",
-        "Basic analytics",
-        "Monthly backup",
-      ],
-      popular: false,
-      color: "from-blue-500 to-cyan-500",
-      icon: Utensils,
-      savings: "Saves $1,200/month in staff costs",
-    },
-    {
-      name: "Restaurant Pro",
-      monthlyPrice: "$197",
-      setup: "$697",
-      description: "Complete automation for growing restaurants",
-      features: [
-        "Advanced WhatsApp automation",
-        "Unlimited menu items",
-        "Unlimited automated orders",
-        "AI-powered conversation handling",
-        "Advanced restaurant dashboard",
-        "Multi-payment integration",
-        "Inventory management",
-        "Customer targeting",
-        "Broadcast to 500 customers",
-        "Advanced reporting",
-        "Priority support",
-        "Discount & promotion automation",
-        "Weekly optimization",
-        "Staff training included",
-      ],
-      popular: true,
-      color: "from-purple-500 to-pink-500",
-      icon: Rocket,
-      savings: "Saves $2,400/month in staff costs",
-    },
-    {
-      name: "Multi-Location",
-      monthlyPrice: "$297",
-      setup: "$997",
-      description: "Enterprise solution for restaurant chains",
-      features: [
-        "Multi-location management",
-        "Unlimited everything",
-        "Advanced AI conversations",
-        "Chain-wide analytics",
-        "Custom integrations",
-        "Advanced inventory automation",
-        "Unlimited broadcasting",
-        "Real-time business intelligence",
-        "24/7 dedicated support",
-        "Staff management tools",
-        "Custom feature development",
-        "Daily optimization",
-        "Enterprise security",
-        "Dedicated success manager",
-      ],
-      popular: false,
-      color: "from-green-500 to-emerald-500",
-      icon: Award,
-      savings: "Saves $5,000+/month in staff costs",
-    },
-  ];
-
-  const features = [
-    {
-      icon: Bot,
-      title: "Smart WhatsApp Ordering",
-      description:
-        "AI chatbot handles complete customer conversations, takes orders, and processes payments automatically.",
-      details: [
-        "Natural conversation flow",
-        "Menu browsing automation",
-        "Order customization",
-        "Automatic checkout",
-      ],
-    },
-    {
-      icon: ShoppingCart,
-      title: "Complete Order Management",
-      description:
-        "End-to-end order processing from customer inquiry to delivery confirmation.",
-      details: [
-        "Automated order taking",
-        "Kitchen notifications",
-        "Delivery tracking",
-        "Customer updates",
-      ],
-    },
-    {
-      icon: BarChart3,
-      title: "Restaurant Dashboard",
-      description:
-        "Real-time analytics showing orders, revenue, popular items, and customer insights.",
-      details: [
-        "Live order monitoring",
-        "Sales analytics",
-        "Menu performance",
-        "Customer behavior",
-      ],
-    },
-    {
-      icon: Users,
-      title: "Customer Database",
-      description:
-        "Automatically build and manage customer relationships with purchase history.",
-      details: [
-        "Auto customer profiles",
-        "Order history tracking",
-        "Loyalty programs",
-        "Targeted marketing",
-      ],
-    },
-  ];
-
-  const results = [
-    {
-      restaurant: "Mario's Pizza Palace",
-      location: "Karachi",
-      before: "$800/month staff costs + missed orders",
-      after: "$97/month automation + zero missed orders",
-      savings: "$703/month savings",
-      improvement: "300% more orders processed",
-    },
-    {
-      restaurant: "Spice Garden Restaurant",
-      location: "Lahore",
-      before: "$1,200/month staff costs + order errors",
-      after: "$197/month automation + perfect accuracy",
-      savings: "$1,003/month savings",
-      improvement: "24/7 operations, no staff needed",
-    },
-    {
-      restaurant: "Delhi Darbar",
-      location: "Islamabad",
-      before: "$1,500/month staff + limited hours",
-      after: "$197/month automation + 24/7 service",
-      savings: "$1,303/month savings",
-      improvement: "500% increase in night orders",
-    },
-  ];
-
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+  // Demo functions
+  const scrollToBottom = () => {
+    // Scroll only within the messages container, not the entire page
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
     }
-    setIsMenuOpen(false);
   };
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const addMessage = (text, isBot = true) => {
+    const message = {
+      id: Date.now() + Math.random(),
+      text,
+      isBot,
+      timestamp: new Date(),
+    };
+    setMessages((prev) => [...prev, message]);
+  };
+
+  const simulateTyping = (callback, delay = 1000) => {
+    setIsTyping(true);
+    setTimeout(() => {
+      setIsTyping(false);
+      callback();
+    }, delay);
+  };
+
+  const startDemo = (businessType) => {
+    setSelectedDemo(businessType);
+    setMessages([]);
+    setCart([]);
+    simulateTyping(() => {
+      const business = businessCategories.find((b) => b.id === businessType.id);
+      addMessage(`🤖 **Welcome to ${business.name} WhatsApp Business!**
+
+📱 **This is YOUR business WhatsApp number after ChatBiz automation:**
+
+✨ **Complete WhatsApp Business Automation**
+🔹 Customers message your REAL business WhatsApp number
+🔹 AI handles ALL conversations automatically  
+🔹 No staff needed to respond to messages
+🔹 Works 24/7 on your existing WhatsApp Business account
+
+📊 **Live Results**: ${business.stats.customers} customers served automatically
+💰 **Average Savings**: ${business.stats.savings} per month
+
+**AUTOMATED WHATSAPP MENU:**
+1️⃣ Browse ${
+        business.name === "Real Estate"
+          ? "Services"
+          : business.name === "Healthcare"
+          ? "Appointments"
+          : "Products/Services"
+      }
+2️⃣ Special Offers  
+3️⃣ Business Hours & Contact
+4️⃣ My Account & Order History
+
+**Type any number (1-4) to continue!**
+
+🚀 **ChatBiz Promise**: Your customers will chat with your REAL WhatsApp Business number - we just make it completely automated so you never have to manually respond again!
+
+📱 **Your number**: +1 (555) YOUR-BUSINESS  
+🤖 **Powered by**: ChatBiz AI Automation`);
+      setConversationState("main_menu");
+    });
+  };
+
+  const handleUserMessage = (message) => {
+    addMessage(message, false);
+
+    simulateTyping(() => {
+      processUserMessage(message.toLowerCase().trim());
+    }, 800);
+  };
+
+  const processUserMessage = (message) => {
+    switch (conversationState) {
+      case "main_menu":
+        handleMainMenu(message);
+        break;
+      case "browsing_items":
+        handleItemBrowsing(message);
+        break;
+      case "cart_actions":
+        handleCartActions(message);
+        break;
+      default:
+        if (message === "menu" || message === "start" || message === "0") {
+          showMainMenu();
+        } else {
+          addMessage(
+            `❌ **Invalid input!** Please type a valid option or "menu" to start over.`
+          );
+        }
+        break;
+    }
+  };
+
+  const handleCartActions = (choice) => {
+    switch (choice) {
+      case "1":
+        // Continue Shopping - back to main menu
+        setConversationState("main_menu");
+        showMainMenu();
+        break;
+      case "2":
+        // Proceed to Checkout
+        proceedToCheckout();
+        break;
+      case "3":
+        // View Full Cart
+        showFullCart();
+        break;
+      default:
+        addMessage(`❌ **Invalid choice!** Please select option 1, 2, or 3.`);
+        break;
+    }
+  };
+
+  const proceedToCheckout = () => {
+    const total = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+    const orderId = `CB${Date.now()}`;
+
+    addMessage(`✅ **ORDER CONFIRMED!** ✅
+
+🎉 **Thank you for choosing ${selectedDemo.name}!**
+
+📋 **Order Details:**
+🆔 Order ID: **${orderId}**
+💰 Total: **${total.toFixed(2)}**
+📞 Phone: **Your WhatsApp Number**
+⏰ Processing Time: **Instant**
+💳 Payment: **As per your preference**
+
+🚀 **CHATBIZ AUTOMATION SUCCESS!**
+
+**Your complete order was processed automatically:**
+✅ Zero human staff involvement
+✅ Instant order confirmation  
+✅ Real-time business notification
+✅ Automatic order tracking
+✅ Professional customer experience
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📞 **Want ChatBiz automation for YOUR ${selectedDemo.name.toLowerCase()}?**
+
+🌐 Website: **www.chatbiz.com**
+📱 WhatsApp: **+92-332-993-4858**
+📧 Email: **chatbiz50@gmail.com**
+
+**Transform your ${selectedDemo.name.toLowerCase()} today!**
+✨ Eliminate manual order handling
+✨ Handle unlimited customers simultaneously  
+✨ 24/7 automated operations
+✨ Never miss another order
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 Type **"menu"** to try another order!`);
+
+    // Reset cart and go back to main menu
+    setCart([]);
+    setConversationState("main_menu");
+  };
+
+  const showFullCart = () => {
+    if (cart.length === 0) {
+      addMessage(`🛒 **YOUR CART IS EMPTY**
+
+Ready to add some items? Type "menu" to browse our ${selectedDemo.name.toLowerCase()} options!`);
+      return;
+    }
+
+    const total = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+    let response = `🛒 **YOUR CART**
+
+📋 **Order Summary:**\n`;
+
+    cart.forEach((item, index) => {
+      response += `\n${index + 1}. ${item.name}
+   💰 ${item.price.toFixed(2)} x ${item.quantity}`;
+    });
+
+    response += `\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💰 **TOTAL: ${total.toFixed(2)}**
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**What would you like to do?**
+
+1️⃣ Continue Shopping
+2️⃣ Proceed to Checkout
+3️⃣ Clear Cart
+
+**Select an option (1-3)**`;
+
+    addMessage(response);
+    setConversationState("cart_actions");
+  };
+
+  const showMainMenu = () => {
+    if (!selectedDemo) return;
+
+    setConversationState("main_menu");
+    addMessage(`🤖 Welcome back to ${selectedDemo.name} Automation!
+
+**MAIN MENU:**
+1️⃣ Browse ${
+      selectedDemo.name === "Real Estate"
+        ? "Services"
+        : selectedDemo.name === "Healthcare"
+        ? "Appointments"
+        : "Products/Services"
+    }
+2️⃣ Special Offers
+3️⃣ Business Hours & Contact
+4️⃣ My Account
+
+**Type any number (1-4) to continue!**
+
+🚀 **ChatBiz**: Your automated business assistant is ready to help!`);
+  };
+
+  const handleMainMenu = (choice) => {
+    switch (choice) {
+      case "1":
+        setConversationState("browsing_items");
+        showItems();
+        break;
+      case "2":
+        showSpecialOffers();
+        break;
+      case "3":
+        showBusinessInfo();
+        break;
+      case "4":
+        showAccount();
+        break;
+      default:
+        addMessage(
+          `❌ **Invalid choice!** Please select a valid option (1-4) from the menu above.`
+        );
+        break;
+    }
+  };
+
+  const showItems = () => {
+    const business = selectedDemo;
+    let response = `🏪 **${business.name.toUpperCase()} CATALOG**
+
+**Premium ${
+      business.name === "Healthcare" ? "Services" : "Products/Services"
+    } Available:**\n`;
+
+    business.menu.forEach((item, index) => {
+      response += `\n${index + 1}️⃣ **${item.name}**`;
+      if (item.price > 0) {
+        response += `\n   💰 $${item.price.toFixed(2)}`;
+      } else {
+        response += `\n   💰 FREE`;
+      }
+      response += `\n   📝 ${item.description}\n`;
+    });
+
+    response += `\n**Select any number to add to cart!**\n\n🤖 **ChatBiz**: Real-time inventory from business system!`;
+    addMessage(response);
+  };
+
+  const handleItemBrowsing = (choice) => {
+    const itemIndex = parseInt(choice) - 1;
+    if (itemIndex >= 0 && itemIndex < selectedDemo.menu.length) {
+      const selectedItem = selectedDemo.menu[itemIndex];
+      addToCart(selectedItem.name, selectedItem.price);
+    } else {
+      addMessage(
+        `❌ **Invalid choice!** Please select option 1-${selectedDemo.menu.length}.`
+      );
+    }
+  };
+
+  const addToCart = (itemName, price) => {
+    const newItem = {
+      id: Date.now(),
+      name: itemName,
+      price: price,
+      quantity: 1,
+    };
+    setCart((prev) => [...prev, newItem]);
+
+    const newTotal = [...cart, newItem].reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
+    addMessage(`✅ **ADDED TO CART!** ✅
+
+🛒 **${itemName}**
+💰 ${price.toFixed(2)}
+
+📋 **Cart Total: ${newTotal.toFixed(2)}**
+
+**What's next?**
+
+1️⃣ 🛒 Continue Shopping
+2️⃣ 🚚 Proceed to Checkout  
+3️⃣ 👀 View Full Cart
+
+**Select an option (1-3)**
+
+🤖 **ChatBiz Automation**: Your order processed instantly with zero human involvement!
+
+🌟 **This is exactly how YOUR ${selectedDemo.name.toLowerCase()} will work:**
+✅ Customers order via WhatsApp automatically
+✅ No staff needed to handle orders
+✅ Perfect accuracy every time
+✅ Works 24/7 without breaks
+
+📱 **Ready to automate YOUR business?**
+**Contact**: +92-332-993-4858`);
+
+    setConversationState("cart_actions");
+  };
+
+  const showSpecialOffers = () => {
+    addMessage(`🔥 **SPECIAL OFFERS** 🔥
+
+💥 **Limited Time Deals:**
+
+1️⃣ **New Customer Special** - 25% OFF first order
+2️⃣ **Loyalty Program** - Earn points with every purchase  
+3️⃣ **Bulk Discount** - Save up to 40% on large orders
+4️⃣ **Referral Bonus** - $20 credit for each referral
+
+🚀 **ChatBiz**: Automated promotions increase sales by 60%!`);
+  };
+
+  const showBusinessInfo = () => {
+    addMessage(`📍 **BUSINESS INFORMATION**
+
+🏪 **${selectedDemo.name} Location:**
+📍 123 Business Avenue, Global City
+📞 Phone: (555) CHAT-BIZ
+🕐 Hours: 24/7 Automated Service
+🌐 Website: www.chatbiz.com
+
+🤖 **THIS IS A CHATBIZ DEMO**
+**Showcasing complete business automation!**
+
+✨ **Real Benefits:**
+💰 Eliminate staff costs (Save $2,000-8,000/month)
+📈 Handle unlimited customers simultaneously  
+🕐 24/7 automated operations
+❌ Zero missed opportunities
+⭐ Professional customer experience
+
+🚀 **GET CHATBIZ FOR YOUR BUSINESS!**
+📱 **WhatsApp**: +92-332-993-4858
+🌐 **Website**: www.chatbiz.com`);
+  };
+
+  const showAccount = () => {
+    addMessage(`👤 **ACCOUNT DASHBOARD**
+
+**Customer Profile:**
+📧 Email: demo@customer.com
+📱 Phone: +1-555-DEMO
+🏆 Status: VIP Customer
+💎 Points: 2,450 pts
+
+**Recent Activity:**
+🛍️ Last Order: $45.99 (3 days ago)
+📊 Total Orders: 47
+💰 Total Spent: $2,180.50
+🎯 Savings Earned: $327.25
+
+🤖 **ChatBiz**: Complete customer management automation!`);
+  };
+
+  const handleSendMessage = () => {
+    if (inputValue.trim()) {
+      handleUserMessage(inputValue);
+      setInputValue("");
+    }
+  };
+
+  // If demo is selected, show chat interface
+  if (selectedDemo) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50 p-4">
+        <div className="max-w-4xl mx-auto">
+          {/* Demo Header */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 mb-6 border border-orange-200 shadow-lg">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <div
+                  className={`w-16 h-16 bg-gradient-to-br ${selectedDemo.color} rounded-2xl flex items-center justify-center mr-4`}
+                >
+                  <selectedDemo.icon className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    {selectedDemo.name} Automation Demo
+                  </h2>
+                  <p className="text-orange-600">
+                    Experience your business automated
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedDemo(null)}
+                className="bg-orange-100 text-orange-600 px-4 py-2 rounded-xl hover:bg-orange-200 transition-all"
+              >
+                ← Back to Categories
+              </button>
+            </div>
+          </div>
+
+          {/* Chat Interface - WhatsApp Style */}
+          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden max-h-[600px] flex flex-col">
+            {/* WhatsApp-style Header */}
+            <div className="bg-gradient-to-r from-green-500 to-green-600 p-4 text-white flex-shrink-0">
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
+                  <selectedDemo.icon className="w-6 h-6" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-lg">
+                    {selectedDemo.name} Official
+                  </h3>
+                  <div className="flex items-center text-green-100">
+                    <div className="w-2 h-2 bg-green-300 rounded-full mr-2 animate-pulse"></div>
+                    <span className="text-sm">
+                      Online • Automated by ChatBiz
+                    </span>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-xs text-green-100">
+                    WhatsApp Business
+                  </div>
+                  <div className="text-sm font-semibold">+1 (555) DEMO-BIZ</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Messages Area - Fixed Height with Scroll */}
+            <div
+              ref={messagesContainerRef}
+              className="flex-1 overflow-y-auto p-4 bg-gradient-to-b from-green-50 to-white scroll-smooth"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f0f9ff' fill-opacity='0.3' fill-rule='evenodd'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
+                minHeight: "400px",
+                maxHeight: "450px",
+                scrollBehavior: "smooth",
+              }}
+            >
+              {messages.map((message, index) => (
+                <div
+                  key={message.id}
+                  className={`mb-3 flex ${
+                    message.isBot ? "justify-start" : "justify-end"
+                  }`}
+                >
+                  <div
+                    className={`max-w-[80%] px-4 py-3 rounded-2xl relative ${
+                      message.isBot
+                        ? "bg-white text-gray-800 shadow-md rounded-bl-sm border border-gray-200"
+                        : "bg-green-500 text-white shadow-md rounded-br-sm"
+                    }`}
+                  >
+                    {/* WhatsApp Message Tail */}
+                    {message.isBot && (
+                      <div className="absolute bottom-0 left-0 w-0 h-0 border-t-[8px] border-t-white border-r-[8px] border-r-transparent transform translate-y-full -translate-x-1"></div>
+                    )}
+                    {!message.isBot && (
+                      <div className="absolute bottom-0 right-0 w-0 h-0 border-t-[8px] border-t-green-500 border-l-[8px] border-l-transparent transform translate-y-full translate-x-1"></div>
+                    )}
+
+                    <div className="whitespace-pre-line text-sm leading-relaxed">
+                      {message.text}
+                    </div>
+                    <div
+                      className={`text-xs mt-2 flex items-center justify-end gap-1 ${
+                        message.isBot ? "text-gray-500" : "text-green-100"
+                      }`}
+                    >
+                      <span>
+                        {message.timestamp.toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </span>
+                      {!message.isBot && (
+                        <div className="flex">
+                          <div className="w-4 h-4 text-green-200">✓✓</div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {isTyping && (
+                <div className="flex justify-start mb-4">
+                  <div className="bg-white px-4 py-3 rounded-2xl shadow-md border border-gray-200 rounded-bl-sm relative">
+                    <div className="absolute bottom-0 left-0 w-0 h-0 border-t-[8px] border-t-white border-r-[8px] border-r-transparent transform translate-y-full -translate-x-1"></div>
+                    <div className="flex items-center space-x-2">
+                      <selectedDemo.icon className="w-4 h-4 text-gray-400" />
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce"></div>
+                        <div
+                          className="w-2 h-2 bg-green-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "0.1s" }}
+                        ></div>
+                        <div
+                          className="w-2 h-2 bg-green-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "0.2s" }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* WhatsApp-style Cart Summary */}
+            {cart.length > 0 && (
+              <div className="bg-yellow-50 border-t border-yellow-200 p-3 flex-shrink-0">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <ShoppingCart className="w-5 h-5 text-orange-600 mr-2" />
+                    <span className="text-sm font-semibold text-orange-800">
+                      🛒 {cart.length} item{cart.length !== 1 ? "s" : ""} • Tap
+                      to review
+                    </span>
+                  </div>
+                  <div className="text-lg font-bold text-orange-600">
+                    $
+                    {cart
+                      .reduce(
+                        (sum, item) => sum + item.price * item.quantity,
+                        0
+                      )
+                      .toFixed(2)}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* WhatsApp-style Input Area */}
+            <div className="border-t bg-gray-50 p-4 flex-shrink-0">
+              <div className="flex space-x-3 items-end">
+                <div className="flex-1 bg-white rounded-full border border-gray-300 px-4 py-2 flex items-center">
+                  <input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                    placeholder="Type a message..."
+                    className="flex-1 outline-none text-gray-800 placeholder-gray-500"
+                    disabled={isTyping}
+                  />
+                </div>
+                <button
+                  onClick={handleSendMessage}
+                  disabled={isTyping || !inputValue.trim()}
+                  className="w-12 h-12 bg-green-500 text-white rounded-full hover:bg-green-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                >
+                  <Send className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* WhatsApp-style Quick Replies */}
+              <div className="mt-3 flex flex-wrap gap-2">
+                <button
+                  onClick={() => handleUserMessage("menu")}
+                  className="px-3 py-1 bg-white border border-gray-300 text-gray-700 rounded-full text-sm hover:bg-gray-50 transition-colors"
+                >
+                  📋 Main Menu
+                </button>
+                <button
+                  onClick={() => handleUserMessage("1")}
+                  className="px-3 py-1 bg-white border border-gray-300 text-gray-700 rounded-full text-sm hover:bg-gray-50 transition-colors"
+                >
+                  🛒 Browse Items
+                </button>
+                {cart.length > 0 && (
+                  <button
+                    onClick={() => handleUserMessage("3")}
+                    className="px-3 py-1 bg-orange-100 border border-orange-300 text-orange-700 rounded-full text-sm hover:bg-orange-200 transition-colors"
+                  >
+                    🛒 View Cart ({cart.length})
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Demo Benefits */}
+          <div className="mt-6 bg-gradient-to-r from-orange-500/10 to-red-500/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-orange-200">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">
+              This is YOUR {selectedDemo.name} Tomorrow
+            </h3>
+            <p className="text-gray-600 mb-4">
+              Complete automation handling unlimited customers simultaneously.
+              Zero staff needed, perfect experience every time.
+            </p>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-600">$0</div>
+                <div className="text-sm text-gray-600">Staff Costs</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-orange-600">24/7</div>
+                <div className="text-sm text-gray-600">Operations</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-purple-600">100%</div>
+                <div className="text-sm text-gray-600">Accuracy</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600">5 Min</div>
+                <div className="text-sm text-gray-600">Setup Time</div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => {
+                  const message = `Hi! I want WhatsApp automation for my ${selectedDemo.name.toLowerCase()}. Can you show me how this works for my business?`;
+                  const whatsappUrl = `https://wa.me/923329934858?text=${encodeURIComponent(
+                    message
+                  )}`;
+                  window.open(whatsappUrl, "_blank");
+                }}
+                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-xl font-bold hover:shadow-xl transition-all flex items-center justify-center"
+              >
+                <MessageCircle className="mr-2 w-5 h-5" />
+                Get This For My {selectedDemo.name}
+              </button>
+
+              <button
+                onClick={() => setSelectedDemo(null)}
+                className="border-2 border-orange-500 text-orange-500 px-8 py-3 rounded-xl font-bold hover:bg-orange-500 hover:text-white transition-all"
+              >
+                Try Another Business Type
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Main website layout
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <Helmet>
-        <title>
-          ChatBiz Restaurant Automation | Stop Missing WhatsApp Orders Forever
-        </title>
-        <meta
-          name="description"
-          content="Automate your restaurant's WhatsApp orders completely. Zero staff needed, 24/7 operations, never miss an order again. See live demo!"
-        />
-        <meta
-          name="keywords"
-          content="restaurant automation, whatsapp orders, pizza shop automation, restaurant chatbot, food delivery automation"
-        />
-      </Helmet>
-
       {/* Navigation */}
-      <motion.nav
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="fixed w-full bg-white/95 backdrop-blur-md z-50 shadow-lg border-b border-gray-100"
-      >
+      <nav className="fixed w-full bg-white/95 backdrop-blur-md z-50 shadow-lg border-b border-orange-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <motion.div
-              className="flex items-center space-x-3"
-              whileHover={{ scale: 1.05 }}
+            <div
+              className="flex items-center space-x-3 cursor-pointer"
               onClick={() => scrollToSection("home")}
-              style={{ cursor: "pointer" }}
             >
-              <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
-                <Pizza className="w-7 h-7 text-white" />
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden">
+                <img
+                  src="/logo.png"
+                  alt="ChatBiz Logo"
+                  className="w-12 h-12 object-contain"
+                  onError={(e) => {
+                    // Fallback to gradient background with Bot icon if logo fails to load
+                    e.target.style.display = "none";
+                    e.target.parentElement.classList.add(
+                      "bg-gradient-to-r",
+                      "from-orange-500",
+                      "to-red-500"
+                    );
+                    const botIcon = document.createElement("div");
+                    botIcon.innerHTML = "🤖";
+                    botIcon.className =
+                      "w-7 h-7 text-white flex items-center justify-center";
+                    e.target.parentElement.appendChild(botIcon);
+                  }}
+                />
               </div>
               <div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                   ChatBiz
                 </span>
                 <div className="text-xs text-gray-500">
-                  Restaurant Automation
+                  Universal Business Automation
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center space-x-8">
               {[
                 { name: "Home", id: "home" },
-                { name: "Live Demo", id: "demo" },
+                { name: "Live Demos", id: "demo" },
                 { name: "Features", id: "features" },
                 { name: "Pricing", id: "pricing" },
                 { name: "Results", id: "results" },
@@ -329,32 +1255,25 @@ const RestaurantAutomationWebsite = () => {
                 >
                   {item.name}
                   {activeSection === item.id && (
-                    <motion.div
-                      layoutId="activeSection"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-orange-600"
-                    />
+                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-orange-600" />
                   )}
                 </button>
               ))}
 
-              <motion.button
-                onClick={tryPizzaDemo}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center"
+              <button
+                onClick={viewDashboard}
+                className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center"
               >
-                <Pizza className="w-4 h-4 mr-2" />
-                Try Demo
-              </motion.button>
+                <Monitor className="w-4 h-4 mr-2" />
+                View Dashboard
+              </button>
 
-              <motion.button
+              <button
                 onClick={contactUs}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
               >
                 Get Started
-              </motion.button>
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -372,16 +1291,11 @@ const RestaurantAutomationWebsite = () => {
 
           {/* Mobile Menu */}
           {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden pb-4 border-t border-gray-100"
-            >
+            <div className="lg:hidden pb-4 border-t border-orange-100">
               <div className="flex flex-col space-y-4 pt-4">
                 {[
                   { name: "Home", id: "home" },
-                  { name: "Live Demo", id: "demo" },
+                  { name: "Live Demos", id: "demo" },
                   { name: "Features", id: "features" },
                   { name: "Pricing", id: "pricing" },
                   { name: "Results", id: "results" },
@@ -395,23 +1309,23 @@ const RestaurantAutomationWebsite = () => {
                   </button>
                 ))}
                 <button
-                  onClick={tryPizzaDemo}
-                  className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-xl font-semibold text-center flex items-center justify-center"
+                  onClick={viewDashboard}
+                  className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-xl font-semibold text-center flex items-center justify-center"
                 >
-                  <Pizza className="w-4 h-4 mr-2" />
-                  Try Demo
+                  <Monitor className="w-4 h-4 mr-2" />
+                  View Dashboard
                 </button>
                 <button
                   onClick={contactUs}
-                  className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-xl font-semibold text-center"
+                  className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-xl font-semibold text-center"
                 >
                   Get Started
                 </button>
               </div>
-            </motion.div>
+            </div>
           )}
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Hero Section */}
       <section
@@ -419,359 +1333,205 @@ const RestaurantAutomationWebsite = () => {
         className="pt-24 pb-20 bg-gradient-to-br from-orange-50 via-white to-red-50 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-orange-600/5 to-red-600/5"></div>
-        <motion.div
-          style={{ y: yRange }}
-          className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-orange-400/20 to-red-400/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          style={{ y: useTransform(scrollYProgress, [0, 1], [0, -100]) }}
-          className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-red-400/20 to-pink-400/20 rounded-full blur-3xl"
-        />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-orange-400/20 to-red-400/20 rounded-full blur-3xl animate-pulse"></div>
+        <div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-red-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
 
         <div className="max-w-7xl mx-auto px-4 mt-10 sm:px-6 lg:px-8 relative">
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            animate="animate"
-            className="text-center"
-          >
-            <motion.div
-              variants={fadeInUp}
-              className="inline-flex items-center bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full px-6 py-3 mb-8 shadow-lg"
-            >
-              <Zap className="w-5 h-5 text-yellow-500 mr-2" />
+          <div className="text-center">
+            <div className="inline-flex items-center bg-white/80 backdrop-blur-sm border border-orange-200 rounded-full px-6 py-3 mb-8 shadow-lg">
+              <Sparkles className="w-5 h-5 text-orange-500 mr-2" />
               <span className="text-gray-700 font-medium">
-                Trusted by 100+ Restaurants
+                Trusted by 25,000+ Businesses Worldwide
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h1
-              variants={fadeInUp}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-12 leading-tight"
-            >
-              Stop Missing
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-12 leading-tight">
+              Automate Any Business
               <span className="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent block mt-4">
-                WhatsApp Orders Forever
+                In Just 5 Minutes
               </span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              variants={fadeInUp}
-              className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed"
-            >
-              Automate your restaurant's WhatsApp ordering completely. Customers
-              browse menu, place orders, and pay automatically while you
-              eliminate staff costs and operate 24/7.
-            </motion.p>
+            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+              AI-powered WhatsApp automation for restaurants, salons, gyms,
+              shops - ANY business type. Choose your industry below and see
+              instant automation magic.
+            </p>
 
-            <motion.div
-              variants={fadeInUp}
-              className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
-            >
-              <motion.button
-                onClick={tryPizzaDemo}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 40px rgba(34, 197, 94, 0.3)",
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all flex items-center justify-center group"
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+              <button
+                onClick={() => scrollToSection("demo")}
+                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all flex items-center justify-center group"
               >
-                <Pizza className="ml-0 mr-3 w-5 h-5 group-hover:rotate-12 transition-transform" />
-                Try Live Demo Now
+                <Play className="ml-0 mr-3 w-5 h-5 group-hover:scale-110 transition-transform" />
+                Try Live Demos Now
                 <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
+              </button>
 
-              <motion.button
+              <button
                 onClick={viewDashboard}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)",
-                }}
-                whileTap={{ scale: 0.95 }}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all flex items-center justify-center group"
               >
                 <Monitor className="ml-0 mr-3 w-5 h-5 group-hover:scale-110 transition-transform" />
                 View Dashboard
                 <ExternalLink className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
+              </button>
 
-              <motion.button
+              <button
                 onClick={contactUs}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 className="border-2 border-orange-600 text-orange-600 px-10 py-4 rounded-xl text-lg font-semibold hover:bg-orange-50 transition-all flex items-center justify-center"
               >
                 <MessageCircle className="mr-3 w-5 h-5" />
                 Get Quote
-              </motion.button>
-            </motion.div>
+              </button>
+            </div>
 
-            <motion.div
-              variants={fadeInUp}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
-            >
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200">
-                <div className="text-4xl font-bold text-green-600 mb-2">$0</div>
-                <div className="text-gray-600 font-medium">Staff Costs</div>
-                <div className="text-sm text-gray-500 mt-2">
-                  100% automated ordering
+            {/* Global Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+              {globalStats.map((stat, index) => (
+                <div
+                  key={index}
+                  className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-orange-200"
+                >
+                  <stat.icon className="w-8 h-8 text-orange-600 mx-auto mb-3" />
+                  <div className="text-4xl font-bold text-orange-600 mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-gray-600 font-medium">{stat.label}</div>
                 </div>
-              </div>
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200">
-                <div className="text-4xl font-bold text-blue-600 mb-2">
-                  24/7
-                </div>
-                <div className="text-gray-600 font-medium">Operations</div>
-                <div className="text-sm text-gray-500 mt-2">
-                  Never miss an order
-                </div>
-              </div>
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200">
-                <div className="text-4xl font-bold text-orange-600 mb-2">7</div>
-                <div className="text-gray-600 font-medium">Days Setup</div>
-                <div className="text-sm text-gray-500 mt-2">
-                  Ready in one week
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Live Demo Section */}
       <section id="demo" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center bg-green-50 border border-green-200 rounded-full px-6 py-3 mb-8 shadow-lg">
-              <Pizza className="w-5 h-5 text-green-600 mr-2" />
-              <span className="text-green-700 font-medium">
-                Live System Working Now
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-orange-50 border border-orange-200 rounded-full px-6 py-3 mb-8 shadow-lg">
+              <Rocket className="w-5 h-5 text-orange-600 mr-2" />
+              <span className="text-orange-700 font-medium">
+                Interactive Business Demos
               </span>
             </div>
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              See It Work Live
-              <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent block">
-                Your Restaurant Tomorrow
+              Choose Your Business Type
+              <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent block">
+                See Instant Automation
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Try our live pizza shop automation right now. This is exactly how
-              your restaurant will work - customers order automatically, no
-              staff needed.
+              Experience exactly how ChatBiz will automate YOUR business. Click
+              any category below to see industry-specific automation in action.
             </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-200">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mr-4">
-                    <MessageCircle className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900">
-                      Try WhatsApp Ordering
-                    </h3>
-                    <p className="text-green-700 font-medium">
-                      +92 332 994 5014
-                    </p>
-                  </div>
-                </div>
-                <div className="bg-white rounded-lg p-4 mb-6 border-l-4 border-green-500">
-                  <p className="text-gray-700 font-medium mb-2">Simply send:</p>
-                  <p className="text-2xl font-bold text-green-600">menu</p>
-                  <p className="text-sm text-gray-600 mt-2">
-                    The bot will handle everything automatically
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-white p-4 rounded-lg border border-green-200">
-                    <div className="font-semibold text-green-800 mb-2">
-                      What You'll See:
-                    </div>
-                    <ul className="text-sm text-green-700 space-y-1">
-                      <li>• Smart menu display</li>
-                      <li>• Easy ordering process</li>
-                      <li>• Size & customization</li>
-                      <li>• Automatic checkout</li>
-                    </ul>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg border border-blue-200">
-                    <div className="font-semibold text-blue-800 mb-2">
-                      No Staff Needed:
-                    </div>
-                    <ul className="text-sm text-blue-700 space-y-1">
-                      <li>• 24/7 availability</li>
-                      <li>• Perfect accuracy</li>
-                      <li>• Instant responses</li>
-                      <li>• Unlimited capacity</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <motion.button
-                  onClick={tryPizzaDemo}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center text-lg"
-                >
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Try Live Demo Now
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </motion.button>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-200">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mr-4">
-                    <Monitor className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900">
-                      Restaurant Dashboard
-                    </h3>
-                    <p className="text-blue-700 font-medium">
-                      Real-time Management
-                    </p>
-                  </div>
-                </div>
-                <p className="text-gray-600 mb-6">
-                  See exactly how you'll manage your automated restaurant. Live
-                  orders, analytics, menu management - everything in one
-                  dashboard.
-                </p>
-
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-white p-4 rounded-lg border border-purple-200">
-                    <div className="font-semibold text-purple-800 mb-2">
-                      Live Tracking:
-                    </div>
-                    <ul className="text-sm text-purple-700 space-y-1">
-                      <li>• Real-time orders</li>
-                      <li>• Customer data</li>
-                      <li>• Sales analytics</li>
-                      <li>• Popular items</li>
-                    </ul>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg border border-orange-200">
-                    <div className="font-semibold text-orange-800 mb-2">
-                      Easy Control:
-                    </div>
-                    <ul className="text-sm text-orange-700 space-y-1">
-                      <li>• Menu editing</li>
-                      <li>• Price updates</li>
-                      <li>• Order status</li>
-                      <li>• Customer messaging</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <motion.button
-                  onClick={viewDashboard}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center text-lg"
-                >
-                  <Monitor className="w-5 h-5 mr-2" />
-                  View Live Dashboard
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </motion.button>
-              </div>
-            </motion.div>
           </div>
 
-          {/* Quick Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8 shadow-lg max-w-4xl mx-auto"
-          >
+          {/* Business Categories Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mb-16">
+            {businessCategories.map((business, index) => (
+              <div
+                key={business.id}
+                className="group cursor-pointer"
+                onClick={() => startDemo(business)}
+              >
+                <div
+                  className={`bg-gradient-to-br ${business.color} p-6 rounded-3xl shadow-lg hover:shadow-orange-500/25 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border border-white/20`}
+                >
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                      <business.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-white font-bold text-lg mb-2">
+                      {business.name}
+                    </h3>
+                    <p className="text-white/80 text-sm mb-4">
+                      {business.description}
+                    </p>
+
+                    {/* Quick stats */}
+                    <div className="space-y-1 mb-4">
+                      <div className="text-xs text-white/90">
+                        <span className="font-semibold">
+                          {business.stats.customers}
+                        </span>{" "}
+                        customers
+                      </div>
+                      <div className="text-xs text-white/90">
+                        <span className="font-semibold">
+                          {business.stats.savings}
+                        </span>{" "}
+                        avg savings
+                      </div>
+                    </div>
+
+                    <div className="inline-flex items-center text-white/90 text-sm font-medium group-hover:text-white transition-colors">
+                      <Play className="w-4 h-4 mr-2" />
+                      Try Demo
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Demo Stats */}
+          <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-              This Demo System Handles:
+              These Demo Systems Handle:
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="text-center p-4 bg-white rounded-lg border border-gray-200">
-                <div className="text-3xl font-bold text-green-600 mb-2">
-                  200+
+              <div className="text-center p-4 bg-white rounded-lg border border-orange-200">
+                <div className="text-3xl font-bold text-orange-600 mb-2">
+                  500K+
                 </div>
                 <div className="text-gray-600 font-medium">Orders/Day</div>
               </div>
-              <div className="text-center p-4 bg-white rounded-lg border border-gray-200">
-                <div className="text-3xl font-bold text-blue-600 mb-2">15s</div>
+              <div className="text-center p-4 bg-white rounded-lg border border-orange-200">
+                <div className="text-3xl font-bold text-blue-600 mb-2">10s</div>
                 <div className="text-gray-600 font-medium">Avg Response</div>
               </div>
-              <div className="text-center p-4 bg-white rounded-lg border border-gray-200">
-                <div className="text-3xl font-bold text-purple-600 mb-2">
+              <div className="text-center p-4 bg-white rounded-lg border border-orange-200">
+                <div className="text-3xl font-bold text-green-600 mb-2">
                   100%
                 </div>
                 <div className="text-gray-600 font-medium">Accuracy</div>
               </div>
-              <div className="text-center p-4 bg-white rounded-lg border border-gray-200">
-                <div className="text-3xl font-bold text-orange-600 mb-2">
+              <div className="text-center p-4 bg-white rounded-lg border border-orange-200">
+                <div className="text-3xl font-bold text-purple-600 mb-2">
                   $0
                 </div>
                 <div className="text-gray-600 font-medium">Staff Needed</div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Features Section */}
       <section
         id="features"
-        className="py-20 bg-gradient-to-br from-gray-50 to-blue-50"
+        className="py-20 bg-gradient-to-br from-gray-50 to-orange-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              How Restaurant Automation Works
+              Why 25,000+ Businesses Choose ChatBiz
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Complete WhatsApp automation designed specifically for
-              restaurants. From order taking to kitchen notifications -
-              everything automated.
+              Complete business automation designed for any industry. From order
+              taking to customer management - everything automated.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {features.map((feature, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={fadeInUp}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-200 group"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-orange-200 group hover:-translate-y-2"
               >
                 <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <feature.icon className="w-8 h-8 text-white" />
@@ -794,50 +1554,37 @@ const RestaurantAutomationWebsite = () => {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Pricing Section */}
       <section id="pricing" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Simple Restaurant Pricing
+              Simple Worldwide Pricing
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               One-time setup, small monthly fee. Save thousands in staff costs
-              while never missing another order.
+              while never missing another customer.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {packages.map((pkg, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={fadeInUp}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className={`bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all border-2 relative overflow-hidden ${
+                className={`bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all border-2 relative overflow-hidden hover:-translate-y-2 ${
                   pkg.popular
-                    ? "border-purple-500 ring-4 ring-purple-100"
+                    ? "border-orange-500 ring-4 ring-orange-100"
                     : "border-gray-200"
                 }`}
               >
                 {pkg.popular && (
-                  <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-center py-3 font-semibold">
+                  <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-orange-500 to-red-500 text-white text-center py-3 font-semibold">
                     ⭐ Most Popular
                   </div>
                 )}
@@ -891,81 +1638,72 @@ const RestaurantAutomationWebsite = () => {
                     </ul>
                   </div>
 
-                  <motion.button
+                  <button
                     onClick={contactUs}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`w-full py-4 px-6 rounded-xl font-semibold text-center transition-all ${
+                    className={`w-full py-4 px-6 rounded-xl font-semibold text-center transition-all hover:-translate-y-1 hover:shadow-xl ${
                       pkg.popular
-                        ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-lg"
-                        : "bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg"
+                        ? "bg-gradient-to-r from-orange-500 to-red-500 text-white"
+                        : "bg-gradient-to-r from-gray-800 to-gray-900 text-white"
                     }`}
                   >
                     Get Started Today
-                  </motion.button>
+                  </button>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mt-16"
-          >
-            <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
+          <div className="text-center mt-16">
+            <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                ROI Example: Small Restaurant
+                ROI Example: Average Business
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <div className="text-center p-4 bg-red-50 rounded-lg border border-red-200">
-                  <div className="text-2xl font-bold text-red-600">$800</div>
+                  <div className="text-2xl font-bold text-red-600">$2,400</div>
                   <div className="text-gray-600">Current Monthly Cost</div>
                   <div className="text-sm text-red-600">
-                    WhatsApp staff + missed orders
+                    WhatsApp staff + missed opportunities
                   </div>
                 </div>
                 <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
-                  <div className="text-2xl font-bold text-blue-600">$97</div>
+                  <div className="text-2xl font-bold text-blue-600">$197</div>
                   <div className="text-gray-600">ChatBiz Monthly Cost</div>
                   <div className="text-sm text-blue-600">
                     Complete automation
                   </div>
                 </div>
                 <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
-                  <div className="text-2xl font-bold text-green-600">$703</div>
+                  <div className="text-2xl font-bold text-green-600">
+                    $2,203
+                  </div>
                   <div className="text-gray-600">Monthly Savings</div>
                   <div className="text-sm text-green-600">
-                    Pays for itself in 3 weeks
+                    Pays for itself in 10 days
                   </div>
                 </div>
               </div>
               <p className="text-gray-600 mb-6">
-                <strong>Annual Savings:</strong> $8,436 |
-                <strong> Setup Payback:</strong> 21 days
+                <strong>Annual Savings:</strong> $26,436 |
+                <strong> Setup Payback:</strong> 10 days
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.button
+                <button
                   onClick={contactUs}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
+                  className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
                 >
                   <Calculator className="w-4 h-4 mr-2" />
                   Calculate My Savings
-                </motion.button>
-                <motion.button
-                  onClick={tryPizzaDemo}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+                </button>
+                <button
+                  onClick={() => scrollToSection("demo")}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
                 >
                   Try Demo First
-                </motion.button>
+                </button>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -975,42 +1713,29 @@ const RestaurantAutomationWebsite = () => {
         className="py-20 bg-gradient-to-br from-blue-50 to-purple-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Real Restaurant Results
+              Real Business Results
             </h2>
             <p className="text-xl text-gray-600">
-              Local restaurants using ChatBiz automation are saving thousands
-              while handling more orders than ever before.
+              Businesses worldwide using ChatBiz automation are saving thousands
+              while serving more customers than ever before.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {results.map((result, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={fadeInUp}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border border-gray-200"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border border-gray-200 hover:-translate-y-2"
               >
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                    {result.restaurant.charAt(0)}
+                    {result.business.charAt(0)}
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900">
-                      {result.restaurant}
+                      {result.business}
                     </div>
                     <div className="text-sm text-gray-600">
                       {result.location}
@@ -1045,48 +1770,39 @@ const RestaurantAutomationWebsite = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mt-16"
-          >
+          <div className="text-center mt-16">
             <div className="bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 Ready to Get These Results?
               </h3>
               <p className="text-gray-600 mb-8">
-                Join these successful restaurants. Setup takes only 7 days and
+                Join these successful businesses. Setup takes only 5 minutes and
                 you'll start saving immediately.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.button
-                  onClick={tryPizzaDemo}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
+                <button
+                  onClick={() => scrollToSection("demo")}
+                  className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
                 >
-                  <Pizza className="w-5 h-5 mr-2" />
+                  <Play className="w-5 h-5 mr-2" />
                   Try Demo First
-                </motion.button>
+                </button>
 
-                <motion.button
+                <button
                   onClick={contactUs}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
                 >
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Start My Setup
-                </motion.button>
+                </button>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -1096,48 +1812,32 @@ const RestaurantAutomationWebsite = () => {
         className="py-20 bg-gradient-to-br from-orange-600 via-red-600 to-pink-600 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-black/20"></div>
-        <motion.div
-          style={{ y: yRange }}
-          className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          style={{ y: useTransform(scrollYProgress, [0, 1], [0, -50]) }}
-          className="absolute bottom-20 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl"
-        />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+        <div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Ready to Automate Your Restaurant?
+              Ready to Automate Your Business?
             </h2>
             <p className="text-xl text-orange-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Stop missing orders and eliminate staff costs. Get your restaurant
-              automation setup in just 7 days.
+              Join 25,000+ businesses worldwide. Get your automation setup in
+              just 5 minutes and start saving thousands in staff costs.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
+            <div className="space-y-8">
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
                 <h3 className="text-2xl font-bold text-white mb-6">
                   Get Started Today
                 </h3>
 
                 <div className="space-y-6">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl"
-                  >
+                  <div className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all">
                     <Phone className="w-8 h-8 text-white" />
                     <div>
                       <div className="text-white font-semibold">Call Now</div>
@@ -1148,41 +1848,35 @@ const RestaurantAutomationWebsite = () => {
                         +92 332 993 4858
                       </a>
                     </div>
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl"
-                  >
+                  <div className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all">
                     <MessageCircle className="w-8 h-8 text-white" />
                     <div>
                       <div className="text-white font-semibold">
                         WhatsApp Us
                       </div>
                       <a
-                        href="https://wa.me/923329934858?text=I want WhatsApp automation for my restaurant"
+                        href="https://wa.me/923329934858?text=I want WhatsApp automation for my business"
                         className="text-orange-200 hover:text-white transition-colors"
                       >
                         Get Instant Quote
                       </a>
                     </div>
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl"
-                  >
+                  <div className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all">
                     <Mail className="w-8 h-8 text-white" />
                     <div>
                       <div className="text-white font-semibold">Email Us</div>
                       <a
-                        href="mailto:realahmedali4@gmail.com"
+                        href="mailto:chatbiz50@gmail.com"
                         className="text-orange-200 hover:text-white transition-colors"
                       >
-                        realahmedali4@gmail.com
+                        chatbiz50@gmail.com
                       </a>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
 
@@ -1191,48 +1885,30 @@ const RestaurantAutomationWebsite = () => {
                 <h3 className="text-2xl font-bold text-white mb-6">
                   Try Before You Buy
                 </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl">
-                    <Pizza className="w-8 h-8 text-orange-300" />
-                    <div>
-                      <div className="text-white font-semibold">
-                        Live Pizza Demo
-                      </div>
-                      <div className="text-orange-200 text-sm">
-                        +92 332 994 5014 - Send "menu"
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex space-x-3">
-                    <motion.button
-                      onClick={tryPizzaDemo}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
-                    >
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      Try Bot
-                    </motion.button>
-                    <motion.button
-                      onClick={viewDashboard}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
-                    >
-                      <Monitor className="w-4 h-4 mr-2" />
-                      Dashboard
-                    </motion.button>
-                  </div>
+                <p className="text-orange-100 mb-6">
+                  Experience automation for any business type. No signup
+                  required.
+                </p>
+                <div className="flex space-x-3">
+                  <button
+                    onClick={() => scrollToSection("demo")}
+                    className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
+                  >
+                    <Play className="w-4 h-4 mr-2" />
+                    Try Demos
+                  </button>
+                  <button
+                    onClick={viewDashboard}
+                    className="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center"
+                  >
+                    <Monitor className="w-4 h-4 mr-2" />
+                    Dashboard
+                  </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-8"
-            >
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-white mb-6">
                 Setup Process
               </h3>
@@ -1244,11 +1920,11 @@ const RestaurantAutomationWebsite = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-semibold mb-2">
-                      Menu & Requirements
+                      Business Analysis
                     </h4>
                     <p className="text-orange-100">
-                      We analyze your menu and ordering process to design the
-                      perfect automation.
+                      We analyze your business type and create industry-specific
+                      automation flows.
                     </p>
                   </div>
                 </div>
@@ -1262,8 +1938,8 @@ const RestaurantAutomationWebsite = () => {
                       Custom Bot Development
                     </h4>
                     <p className="text-orange-100">
-                      We build your personalized WhatsApp ordering system with
-                      your menu and branding.
+                      We build your personalized WhatsApp automation with your
+                      branding and workflows.
                     </p>
                   </div>
                 </div>
@@ -1277,7 +1953,7 @@ const RestaurantAutomationWebsite = () => {
                       Testing & Training
                     </h4>
                     <p className="text-orange-100">
-                      Complete testing and staff training to ensure smooth
+                      Complete testing and team training to ensure smooth
                       operations from day one.
                     </p>
                   </div>
@@ -1289,112 +1965,132 @@ const RestaurantAutomationWebsite = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-semibold mb-2">
-                      Go Live in 7 Days
+                      Go Live in 5 Minutes
                     </h4>
                     <p className="text-orange-100">
-                      Your restaurant operates automatically with 24/7 WhatsApp
-                      ordering and zero manual work.
+                      Your business operates automatically with 24/7 WhatsApp
+                      automation and zero manual work.
                     </p>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mt-16"
-          >
+          <div className="text-center mt-16">
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <motion.button
-                onClick={tryPizzaDemo}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 40px rgba(34, 197, 94, 0.3)",
-                }}
-                whileTap={{ scale: 0.95 }}
+              <button
+                onClick={() => scrollToSection("demo")}
                 className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all inline-flex items-center justify-center"
               >
-                <Pizza className="mr-3 w-5 h-5" />
+                <Play className="mr-3 w-5 h-5" />
                 Try Demo First
-              </motion.button>
+              </button>
 
-              <motion.a
+              <a
                 href="tel:+923329934858"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 40px rgba(255, 255, 255, 0.2)",
-                }}
-                whileTap={{ scale: 0.95 }}
                 className="bg-white text-orange-600 px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all inline-flex items-center justify-center"
               >
                 <Phone className="mr-3 w-5 h-5" />
                 Call Now
-              </motion.a>
+              </a>
 
-              <motion.a
-                href="https://wa.me/923329934858?text=I want WhatsApp automation for my restaurant"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <a
+                href="https://wa.me/923329934858?text=I want WhatsApp automation for my business"
                 className="border-2 border-white text-white px-10 py-4 rounded-xl text-lg font-semibold hover:bg-white hover:text-orange-600 transition-all inline-flex items-center justify-center"
               >
                 <MessageCircle className="mr-3 w-5 h-5" />
                 Get Quote
-              </motion.a>
+              </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
-                  <Pizza className="w-6 h-6 text-white" />
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden">
+                  <img
+                    src="/logo.png"
+                    alt="ChatBiz Logo"
+                    className="w-10 h-10 object-contain"
+                    onError={(e) => {
+                      // Fallback to gradient background with Bot icon if logo fails to load
+                      e.target.style.display = "none";
+                      e.target.parentElement.classList.add(
+                        "bg-gradient-to-r",
+                        "from-orange-500",
+                        "to-red-500"
+                      );
+                      const botIcon = document.createElement("div");
+                      botIcon.innerHTML = "🤖";
+                      botIcon.className =
+                        "w-6 h-6 text-white flex items-center justify-center";
+                      e.target.parentElement.appendChild(botIcon);
+                    }}
+                  />
                 </div>
                 <div>
                   <span className="text-2xl font-bold">ChatBiz</span>
                   <div className="text-sm text-gray-400">
-                    Restaurant Automation
+                    Universal Business Automation
                   </div>
                 </div>
               </div>
               <p className="text-gray-400 mb-6 leading-relaxed">
-                WhatsApp automation specialists for restaurants. We eliminate
-                manual work and help restaurants handle unlimited orders 24/7.
+                WhatsApp automation specialists for all business types. We
+                eliminate manual work and help businesses serve customers 24/7.
               </p>
               <div className="flex items-center space-x-4 mb-6">
-                <Pizza className="w-5 h-5 text-orange-400" />
+                <Globe className="w-5 h-5 text-orange-400" />
                 <span className="text-gray-400 text-sm">
-                  Trusted by 100+ restaurants
+                  Serving 47 countries worldwide
                 </span>
               </div>
             </div>
 
             <div>
-              <h3 className="font-semibold mb-6 text-lg">
-                Restaurant Solutions
-              </h3>
+              <h3 className="font-semibold mb-6 text-lg">Business Solutions</h3>
               <ul className="space-y-3 text-gray-400">
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  WhatsApp Order Automation
+                  Restaurant Automation
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  Menu Management System
+                  Retail & E-commerce
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  Customer Database Automation
+                  Healthcare & Appointments
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
-                  Payment Processing
+                  Beauty & Wellness
+                </li>
+                <li className="hover:text-white transition-colors cursor-pointer">
+                  Professional Services
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-6 text-lg">Platform Features</h3>
+              <ul className="space-y-3 text-gray-400">
+                <li className="hover:text-white transition-colors cursor-pointer">
+                  WhatsApp Integration
+                </li>
+                <li className="hover:text-white transition-colors cursor-pointer">
+                  AI Conversation Handling
+                </li>
+                <li className="hover:text-white transition-colors cursor-pointer">
+                  Multi-Language Support
                 </li>
                 <li className="hover:text-white transition-colors cursor-pointer">
                   Analytics & Reporting
+                </li>
+                <li className="hover:text-white transition-colors cursor-pointer">
+                  Custom Integrations
                 </li>
               </ul>
             </div>
@@ -1414,42 +2110,35 @@ const RestaurantAutomationWebsite = () => {
                 <li className="flex items-center">
                   <Mail className="w-4 h-4 mr-3" />
                   <a
-                    href="mailto:realahmedali4@gmail.com"
+                    href="mailto:chatbiz50@gmail.com"
                     className="hover:text-white transition-colors"
                   >
-                    realahmedali4@gmail.com
+                    chatbiz50@gmail.com
                   </a>
                 </li>
                 <li className="flex items-center">
                   <MessageCircle className="w-4 h-4 mr-3" />
                   <a
-                    href="https://wa.me/923329934858?text=I need restaurant automation support"
+                    href="https://wa.me/923329934858?text=I need business automation support"
                     className="hover:text-white transition-colors"
                   >
                     24/7 WhatsApp Support
                   </a>
                 </li>
                 <li className="flex items-center">
-                  <Pizza className="w-4 h-4 mr-3" />
-                  <a
-                    href="https://wa.me/923329945014?text=menu"
-                    className="hover:text-white transition-colors"
-                  >
-                    Try Live Demo
-                  </a>
+                  <Globe className="w-4 h-4 mr-3" />
+                  <span className="text-gray-400">www.chatbiz.com</span>
                 </li>
               </ul>
 
               <div className="mt-6">
-                <motion.button
+                <button
                   onClick={contactUs}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                   className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center"
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
                   Get Started Today
-                </motion.button>
+                </button>
               </div>
             </div>
           </div>
@@ -1457,9 +2146,9 @@ const RestaurantAutomationWebsite = () => {
           <div className="border-t border-gray-800 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-gray-400 mb-4 md:mb-0">
-                © 2025 ChatBiz Restaurant Automation. All rights reserved.
-                Transforming restaurants through intelligent WhatsApp
-                automation.
+                © 2025 ChatBiz Universal Business Automation. All rights
+                reserved. Transforming businesses worldwide through intelligent
+                WhatsApp automation.
               </p>
               <div className="flex space-x-6 text-gray-400">
                 <span className="hover:text-white transition-colors cursor-pointer">
@@ -1469,7 +2158,7 @@ const RestaurantAutomationWebsite = () => {
                   Terms of Service
                 </span>
                 <span className="hover:text-white transition-colors cursor-pointer">
-                  Restaurant Support
+                  Business Support
                 </span>
               </div>
             </div>
@@ -1480,4 +2169,4 @@ const RestaurantAutomationWebsite = () => {
   );
 };
 
-export default RestaurantAutomationWebsite;
+export default ChatBizPlatform;
