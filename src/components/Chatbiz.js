@@ -33,7 +33,7 @@ import {
   Monitor,
   BarChart3,
 } from "lucide-react";
-
+import RestaurantTemplate from "./Resturanttemplate";
 const ChatBizPlatform = () => {
   const [selectedDemo, setSelectedDemo] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -44,8 +44,46 @@ const ChatBizPlatform = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const messagesEndRef = useRef(null);
+  const [currentView, setCurrentView] = useState("main"); // Add this line
   const messagesContainerRef = useRef(null);
 
+  // Scroll handling
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        "home",
+        "demo",
+        "templates",
+        "features",
+        "pricing",
+        "results",
+        "contact",
+      ];
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  // If restaurant template is selected, show it
+  if (currentView === "restaurant-template") {
+    return <RestaurantTemplate onBack={() => setCurrentView("main")} />;
+  }
   // Business categories with demo data
   const businessCategories = [
     {
@@ -478,34 +516,6 @@ const ChatBizPlatform = () => {
     { label: "Customer Satisfaction", value: "99.8%", icon: Star },
   ];
 
-  // Scroll handling
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = [
-        "home",
-        "demo",
-        "features",
-        "pricing",
-        "results",
-        "contact",
-      ];
-      const currentSection = sections.find((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -535,10 +545,6 @@ const ChatBizPlatform = () => {
         messagesContainerRef.current.scrollHeight;
     }
   };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
 
   const addMessage = (text, isBot = true) => {
     const message = {
@@ -1242,6 +1248,7 @@ Ready to add some items? Type "menu" to browse our ${selectedDemo.name.toLowerCa
               {[
                 { name: "Home", id: "home" },
                 { name: "Live Demos", id: "demo" },
+                { name: "Templates", id: "templates" },
                 { name: "Features", id: "features" },
                 { name: "Pricing", id: "pricing" },
                 { name: "Results", id: "results" },
@@ -1296,6 +1303,7 @@ Ready to add some items? Type "menu" to browse our ${selectedDemo.name.toLowerCa
                 {[
                   { name: "Home", id: "home" },
                   { name: "Live Demos", id: "demo" },
+                  { name: "Templates", id: "templates" },
                   { name: "Features", id: "features" },
                   { name: "Pricing", id: "pricing" },
                   { name: "Results", id: "results" },
@@ -1506,6 +1514,230 @@ Ready to add some items? Type "menu" to browse our ${selectedDemo.name.toLowerCa
                 </div>
                 <div className="text-gray-600 font-medium">Staff Needed</div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Professional Templates Section */}
+      <section
+        id="templates"
+        className="py-20 bg-gradient-to-br from-blue-50 to-purple-50"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-blue-50 border border-blue-200 rounded-full px-6 py-3 mb-8 shadow-lg">
+              <Monitor className="w-5 h-5 text-blue-600 mr-2" />
+              <span className="text-blue-700 font-medium">
+                Professional Business Templates
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Complete Business Systems
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent block">
+                Ready to Deploy
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Experience complete business automation systems with professional
+              dashboards and WhatsApp integration. These are the exact systems
+              your business will receive.
+            </p>
+          </div>
+
+          {/* Template Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {/* Restaurant Template */}
+            <div
+              className="group cursor-pointer"
+              onClick={() => setCurrentView("restaurant-template")}
+            >
+              <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200 overflow-hidden">
+                <div className="bg-gradient-to-r from-orange-500 to-red-500 p-6 text-white">
+                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <Pizza className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-center mb-2">
+                    Restaurant Automation
+                  </h3>
+                  <p className="text-orange-100 text-center text-sm">
+                    Complete food ordering & management system
+                  </p>
+                </div>
+
+                <div className="p-8">
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Check className="w-4 h-4 text-green-500 mr-3" />
+                      <span>WhatsApp ordering automation</span>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Check className="w-4 h-4 text-green-500 mr-3" />
+                      <span>Professional dashboard</span>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Check className="w-4 h-4 text-green-500 mr-3" />
+                      <span>Order management system</span>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Check className="w-4 h-4 text-green-500 mr-3" />
+                      <span>Menu management</span>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Check className="w-4 h-4 text-green-500 mr-3" />
+                      <span>Customer analytics</span>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-4 mb-6">
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-orange-600 mb-1">
+                        Live Demo Available
+                      </div>
+                      <div className="text-sm text-orange-700">
+                        Experience the full system
+                      </div>
+                    </div>
+                  </div>
+
+                  <button className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all group-hover:scale-105">
+                    Explore Template
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Coming Soon Templates */}
+            <div className="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden opacity-60">
+              <div className="bg-gradient-to-r from-pink-500 to-purple-500 p-6 text-white">
+                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Scissors className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-center mb-2">
+                  Beauty Salon
+                </h3>
+                <p className="text-pink-100 text-center text-sm">
+                  Appointment booking & service management
+                </p>
+              </div>
+
+              <div className="p-8">
+                <div className="text-center">
+                  <div className="text-lg font-bold text-gray-600 mb-2">
+                    Coming Soon
+                  </div>
+                  <div className="text-sm text-gray-500 mb-4">
+                    Professional template in development
+                  </div>
+                  <button className="w-full bg-gray-300 text-gray-500 py-3 px-6 rounded-xl font-semibold cursor-not-allowed">
+                    In Development
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden opacity-60">
+              <div className="bg-gradient-to-r from-green-500 to-teal-500 p-6 text-white">
+                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Dumbbell className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-center mb-2">
+                  Fitness Center
+                </h3>
+                <p className="text-green-100 text-center text-sm">
+                  Membership & class scheduling automation
+                </p>
+              </div>
+
+              <div className="p-8">
+                <div className="text-center">
+                  <div className="text-lg font-bold text-gray-600 mb-2">
+                    Coming Soon
+                  </div>
+                  <div className="text-sm text-gray-500 mb-4">
+                    Professional template in development
+                  </div>
+                  <button className="w-full bg-gray-300 text-gray-500 py-3 px-6 rounded-xl font-semibold cursor-not-allowed">
+                    In Development
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Template Benefits */}
+          <div className="bg-white rounded-2xl shadow-lg border p-8 max-w-4xl mx-auto text-center">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Professional Template Benefits
+            </h3>
+            <p className="text-gray-600 mb-8">
+              Each template includes everything you need to run your business
+              automation professionally
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <Monitor className="w-6 h-6 text-blue-600" />
+                </div>
+                <div className="font-semibold text-gray-900 mb-1">
+                  Complete Dashboard
+                </div>
+                <div className="text-sm text-gray-600">
+                  Professional business management interface
+                </div>
+              </div>
+
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <MessageCircle className="w-6 h-6 text-green-600" />
+                </div>
+                <div className="font-semibold text-gray-900 mb-1">
+                  WhatsApp Integration
+                </div>
+                <div className="text-sm text-gray-600">
+                  Automated customer interactions
+                </div>
+              </div>
+
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <BarChart3 className="w-6 h-6 text-orange-600" />
+                </div>
+                <div className="font-semibold text-gray-900 mb-1">
+                  Analytics & Reports
+                </div>
+                <div className="text-sm text-gray-600">
+                  Real-time business insights
+                </div>
+              </div>
+
+              <div className="text-center">
+                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <Zap className="w-6 h-6 text-purple-600" />
+                </div>
+                <div className="font-semibold text-gray-900 mb-1">
+                  Ready to Deploy
+                </div>
+                <div className="text-sm text-gray-600">
+                  Install and start using immediately
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => setCurrentView("restaurant-template")}
+                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+              >
+                Try Restaurant Template
+              </button>
+              <button
+                onClick={contactUs}
+                className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all"
+              >
+                Request Custom Template
+              </button>
             </div>
           </div>
         </div>
