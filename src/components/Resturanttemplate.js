@@ -404,24 +404,6 @@ const SophisticatedRestaurantTemplate = () => {
           </button>
         ))}
       </nav>
-
-      <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-700">
-        <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-lg p-4 border border-orange-500/20">
-          <div className="flex items-center space-x-2 mb-3">
-            <Sparkles className="w-5 h-5 text-orange-400" />
-            <span className="text-orange-400 font-semibold text-sm">
-              ChatBiz Premium
-            </span>
-          </div>
-          <p className="text-gray-300 text-xs mb-3 leading-relaxed">
-            This restaurant template showcases complete WhatsApp automation
-            capabilities for your business.
-          </p>
-          <button className="w-full bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all">
-            Get This Template
-          </button>
-        </div>
-      </div>
     </div>
   );
 
@@ -442,7 +424,6 @@ const SophisticatedRestaurantTemplate = () => {
       <div className="w-8" />
     </div>
   );
-
   const Overview = () => (
     <div className="p-8 bg-gradient-to-br from-gray-50 to-orange-50/30 min-h-screen">
       {/* Header Section */}
@@ -1318,7 +1299,6 @@ const SophisticatedRestaurantTemplate = () => {
       </div>
     </div>
   );
-
   const Products = () => (
     <div className="p-8 bg-gradient-to-br from-purple-50 to-violet-50/30 min-h-screen">
       <div className="mb-8">
@@ -1857,7 +1837,7 @@ const SophisticatedRestaurantTemplate = () => {
     </div>
   );
 
-  const Settings = () => (
+  const Settingggs = () => (
     <div className="p-8 bg-gradient-to-br from-gray-50 to-slate-50/30 min-h-screen">
       <div className="mb-8">
         <div className="flex items-center space-x-4 mb-4">
@@ -2085,7 +2065,6 @@ const SophisticatedRestaurantTemplate = () => {
             </div>
           </div>
         </div>
-
         {/* Sidebar Actions */}
         <div className="space-y-6">
           {/* Quick Actions */}
@@ -2171,7 +2150,8 @@ const SophisticatedRestaurantTemplate = () => {
       case "customers":
         return <Customers />;
       case "settings":
-        return <Settings />;
+        return <Settingggs />;
+      // Add other views here...
       default:
         return <Overview />;
     }
